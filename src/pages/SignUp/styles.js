@@ -34,7 +34,7 @@ export const Input = styled.input`
   padding: 10px;
 `;
 
-export const Agreement = styled.span`
+export const Agreement = styled.input`
   font-size: 12px;
   margin: 20px 0px;
 `;

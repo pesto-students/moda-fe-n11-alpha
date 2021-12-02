@@ -10,6 +10,7 @@ const theme = {
     modaLightYellow: "#FBF3DF",
     modaBlack: "#263238",
     background: "#708B75",
+    error: "#da1e28",
     link: "#9AB87A",
   },
   font: {
