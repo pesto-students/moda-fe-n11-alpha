@@ -1,5 +1,5 @@
-import { Container, Wrapper, Form, Button } from "./styles";
-import { Input, CheckBox, ErrorMessage } from "../../components";
+import { Container, Wrapper, Form } from "./styles";
+import { Input, CheckBox, ErrorMessage, Button } from "../../components";
 import useSignUpHook from "./useSignupHook";
 
 function SignUp() {

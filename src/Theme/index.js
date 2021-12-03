@@ -29,5 +29,17 @@ const theme = {
     laptop: "1200px",
     desktop: "1600px",
   },
+  buttons: {
+    colored: {
+      width: "40%",
+      border: "none",
+      padding: "15px 20px",
+      "background-color": "teal",
+      color: "white",
+      cursor: "pointer",
+    },
+    light: {},
+    dark: {},
+  },
 };
 export default theme;
