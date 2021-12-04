@@ -11,6 +11,7 @@ const theme = {
     modaBlack: "#263238",
     background: "#708B75",
     error: "#da1e28",
+    backgroundgrey: "#E5E5E5",
     link: "#9AB87A",
   },
   font: {
@@ -34,7 +35,7 @@ const theme = {
       width: "40%",
       border: "none",
       padding: "15px 20px",
-      "background-color": "teal",
+      "background-color": "#2A9D8F",
       color: "white",
       cursor: "pointer",
     },

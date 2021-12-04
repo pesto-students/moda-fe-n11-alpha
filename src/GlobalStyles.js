@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
    margin: 0;
   }
   body {
-    background-color: ${(props) => props.theme.color.modaLightPurple};
+    background-color: ${(props) => props.theme.color.backgroundgrey};
     font-family: Urbanist, sans-serif;
   }
   h1{

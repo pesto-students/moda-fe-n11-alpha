@@ -1,13 +1,13 @@
 import GlobalStyles from "./GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import theme from "./Theme";
-import SignUp from "./pages/SignUp";
+import Pages from "./pages";
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <div>
         <GlobalStyles />
-        <SignUp />
+        <Pages />
       </div>
     </ThemeProvider>
   );
