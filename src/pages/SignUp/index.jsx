@@ -1,6 +1,6 @@
 import { Container, Wrapper, Form } from "./styles";
 import { Input, CheckBox, ErrorMessage, Button } from "../../components";
-import useSignUpHook from "./useSignupHook";
+import useSignUpHook from "./useSignUpHook";
 
 function SignUp() {
   const { formData, SetFormData, HandleFormData, Error } = useSignUpHook();
