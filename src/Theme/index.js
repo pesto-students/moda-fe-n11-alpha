@@ -39,7 +39,13 @@ const theme = {
       color: "white",
       cursor: "pointer",
     },
-    light: {},
+    light: {
+      padding: "10px",
+      border: "2px solid black",
+      "font-size": "20px",
+      "background-color": "transparent",
+      cursor: "pointer",
+    },
     dark: {},
   },
 };
