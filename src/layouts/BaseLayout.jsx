@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Navbar, Footer } from "../components";
 
-function BaseLayout() {
-    return (
-        <div>
-            
-        </div>
-    )
+function BaseLayout({ children }) {
+  return (
+    <div>
+      <Navbar />
+      {children}
+      <Footer />
+    </div>
+  );
 }
 
-export default BaseLayout
+export default BaseLayout;

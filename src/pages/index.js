@@ -23,12 +23,7 @@ function Pages() {
           path="/ProductDescription/{:id}"
           element={<ProductDescription />}
         ></Route>
-        <Route
-          path="/*"
-          render={() => {
-            <p>No page found</p>;
-          }}
-        ></Route>
+        <Route path="/*" render={() => <h1>No page found</h1>}></Route>
       </Routes>
     </Router>
   );
