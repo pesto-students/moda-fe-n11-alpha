@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { mobile } from "../../responsive";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   position: relative;
+  overflow-x: hidden;
 `;
 export const Arrow = styled.div`
   width: 50px;

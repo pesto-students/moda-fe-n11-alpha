@@ -12,6 +12,8 @@ import {
   Desc,
 } from "./styles";
 import useCarousal from "./useCarousalHook";
+import { Link } from "react-router-dom";
+
 const Carousal = () => {
   const [slideIndex, handleClick] = useCarousal();
   return (
@@ -28,7 +30,9 @@ const Carousal = () => {
             <InfoContainer>
               <h1>{item.title}</h1>
               <Desc>{item.desc}</Desc>
-              <Button variant="light">SHOP NOW</Button>
+              <Button variant="light">
+                <Link to="/ProductCategories">SHOP NOW</Link>
+              </Button>
             </InfoContainer>
           </Slide>
         </Wrapper>

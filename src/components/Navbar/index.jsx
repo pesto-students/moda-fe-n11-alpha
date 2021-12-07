@@ -12,25 +12,33 @@ import {
   Right,
   MenuItem,
 } from "./styles";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <Container>
       <Wrapper>
         <Left>
+          <Logo>
+            <Link to="/">MODA.</Link>
+          </Logo>
+        </Left>
+        <Center>
           <SearchContainer>
             <Input />
             <BsSearch></BsSearch>
           </SearchContainer>
-        </Left>
-        <Center>
-          <Logo>MODA.</Logo>
         </Center>
         <Right>
-          <MenuItem>SignIn</MenuItem>
-          <MenuItem>Register</MenuItem>
           <MenuItem>
-            <GrCart />
+            <Link to="/signin">SignIn</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/signup">Register</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/cart">
+              <GrCart />
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>

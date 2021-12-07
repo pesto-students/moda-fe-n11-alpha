@@ -7,7 +7,7 @@ const theme = {
     modaPurple: "#6A53F2",
     modaLightPurple: "#F0E8F5",
     modaYelloGreen: "#D4E364",
-    modaLightYellow: "#FBF3DF",
+    modaLightYellow: "#686765",
     modaBlack: "#263238",
     background: "#708B75",
     error: "#da1e28",
@@ -42,11 +42,17 @@ const theme = {
     light: {
       padding: "10px",
       border: "2px solid black",
-      "font-size": "20px",
-      "background-color": "transparent",
+      fontSize: "20px",
+      "background-color": "white",
       cursor: "pointer",
     },
     dark: {},
+    grey: {
+      padding: "15px",
+      border: "0px",
+      fontSize: "2rem",
+      color: "gray",
+    },
   },
 };
 export default theme;
