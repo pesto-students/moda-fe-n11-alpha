@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { get, post, put, deleteproduct } from "../../api";
+import { get, post, put, deleteproduct } from "../../api/ProductAPI";
 import { toast } from "react-toastify";
-const uri = "http://localhost:5000/api/v1/product";
+const uri = "/product";
 // Slice
 const slice = createSlice({
   name: "product",
@@ -35,42 +35,39 @@ export default slice.reducer;
 // Actions
 const { Addproduct, Editproduct, Deleteproduct, Getproduct } = slice.actions;
 
-export const GetproductsInStore = () => async (dispatch) => {
-  try {
-    const res = await get(uri);
-    dispatch(Getproduct(res));
-  } catch (e) {
-    return console.error(e.message);
-  }
-};
+export const GetproductsInStore =
+  ({ color = "", size = "", text = "" }) =>
+  async (dispatch) => {
+    try {
+      const res = await get(uri, { color, size, text });
+      dispatch(Getproduct(res));
+    } catch (e) {
+      console.log(e.message);
+      return e.message;
+    }
+  };
 
 export const AddproductInStore = (data) => async (dispatch) => {
   try {
     const res = await post(uri, data);
-    toast("Add sucessfull");
     dispatch(Addproduct(res));
   } catch (e) {
-    toast("Add failed");
     return console.error(e.message);
   }
 };
 export const EditproductInStore = (data) => async (dispatch) => {
   try {
     const res = await put(uri, data);
-    toast("Edit sucessfull");
     return dispatch(Editproduct(res));
   } catch (e) {
-    toast("Edit failed");
     return console.error(e.message);
   }
 };
 export const DeleteproductInStore = (data) => async (dispatch) => {
   try {
     let r = await deleteproduct(uri, data);
-    toast("delete sucessfull");
     return dispatch(Deleteproduct(data));
   } catch (e) {
-    toast("delete failed");
     return console.error(e.message);
   }
 };

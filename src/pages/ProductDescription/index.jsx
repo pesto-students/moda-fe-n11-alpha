@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Announcements from "../../components/Announcements";
 import Newsletter from "../../components/Newsletter";
@@ -6,6 +6,10 @@ import Footer from "../../components/Footer";
 import styled from "styled-components";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { mobile } from "../../responsive";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { AddproductInCart } from "../../redux/slices/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Wrapper = styled.div`
   display: flex;
@@ -103,7 +107,7 @@ const AmountContainer = styled.div`
   margin-top: 2rem;
 `;
 
-const Quantity = styled.p`
+const Quantity = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
@@ -121,9 +125,47 @@ const Amount = styled.div`
 `;
 
 const ProductDescription = () => {
+  const [ProductDetails, setProductDetails] = useState({});
   const [selectColor, setSelectColor] = useState("red");
-  const [seletSize, setSeletSize] = useState("sm");
+  const [selectSize, setSelectSize] = useState("sm");
   const [qty, setQty] = useState(1);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const email = useSelector((state) => state?.user?.email);
+  const fetchSingleProduct = async (id) => {
+    const res = await axios.get(`product/${id}`);
+    return res.data;
+  };
+  const checkIfProductAlreadyExists = () => {
+    for (let item of cart) {
+      if (item.id === ProductDetails._id) {
+        if (item.color === selectColor) {
+          if (item.size === selectSize) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  };
+  const handleAddToCart = () => {
+    if (checkIfProductAlreadyExists()) {
+      let data = {};
+      data["id"] = ProductDetails._id;
+      data["name"] = ProductDetails.name;
+      data["image"] = ProductDetails["images"].split("~")[0];
+      data["quantity"] = qty;
+      data["color"] = selectColor;
+      data["size"] = selectSize;
+      dispatch(AddproductInCart(email, data));
+    }
+  };
+  useEffect(() => {
+    fetchSingleProduct(id)
+      .then((p) => setProductDetails(p))
+      .catch((err) => console.log(err.message));
+  }, []);
 
   return (
     <div>
@@ -131,111 +173,43 @@ const ProductDescription = () => {
       <Announcements />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png" />
+          <Image src={ProductDetails?.images?.split("~")[0]} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Leather Coat</Title>
-          <Desc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            maiores, facilis eum commodi sapiente voluptates in nulla eos quam!
-            Qui eaque iusto architecto optio. Necessitatibus perferendis
-            suscipit dignissimos eum, asperiores quas nihil animi soluta porro
-            tempora omnis? Illo minus fugiat provident quasi, earum excepturi
-            laudantium. Autem expedita deleniti magni maiores eligendi. Iure, at
-            debitis dicta nesciunt accusamus sunt, minus totam vel voluptatibus
-            sequi error libero qui itaque repudiandae, perferendis rem ipsam
-            sapiente voluptatem minima quod? Vel perferendis, alias recusandae
-            ullam saepe iste quis odio ad accusantium quam dolore numquam atque
-            hic rem optio earum. Cupiditate praesentium aut corporis maxime
-            voluptatum.
-          </Desc>
-          <Price>Price: $ 200</Price>
+          <Title>{ProductDetails.name}</Title>
+          <Desc>{ProductDetails.description}</Desc>
+          <Price>Price: 2$</Price>
           <FilterContainer>
             <FilterTitle>Colors</FilterTitle>
-            <FilterCover
-              selected={selectColor}
-              data="red"
-              onClick={(e) => {
-                setSelectColor("red");
-              }}
-            >
-              <Filter color="red" />
-            </FilterCover>
-            <FilterCover
-              selected={selectColor}
-              data="green"
-              onClick={(e) => {
-                setSelectColor("green");
-              }}
-            >
-              <Filter color="green" />
-            </FilterCover>
-            <FilterCover
-              selected={selectColor}
-              data="blue"
-              onClick={(e) => {
-                setSelectColor("blue");
-              }}
-            >
-              <Filter color="blue" />
-            </FilterCover>
+            {ProductDetails?.color?.map((col) => {
+              return (
+                <FilterCover
+                  key={col}
+                  selected={selectColor}
+                  data={col}
+                  onClick={(e) => setSelectColor(col)}
+                >
+                  <Filter color={col} />
+                </FilterCover>
+              );
+            })}
           </FilterContainer>
           <FilterContainer>
             <FilterTitle>Size</FilterTitle>
-            <FilterCover
-              selected={seletSize}
-              data="sm"
-              onClick={(e) => {
-                setSeletSize("sm");
-              }}
-            >
-              <Filter>sm</Filter>
-            </FilterCover>
-            <FilterCover
-              selected={seletSize}
-              data="md"
-              onClick={(e) => {
-                setSeletSize("md");
-              }}
-            >
-              <Filter>md</Filter>
-            </FilterCover>
-            <FilterCover
-              selected={seletSize}
-              data="lg"
-              onClick={(e) => {
-                setSeletSize("lg");
-              }}
-            >
-              <Filter>lg</Filter>
-            </FilterCover>
-            <FilterCover
-              selected={seletSize}
-              data="xl"
-              onClick={(e) => {
-                setSeletSize("xl");
-              }}
-            >
-              <Filter>xl</Filter>
-            </FilterCover>
-            <FilterCover
-              selected={seletSize}
-              data="xxl"
-              onClick={(e) => {
-                setSeletSize("xxl");
-              }}
-            >
-              <Filter>xxl</Filter>
-            </FilterCover>
-            <FilterCover
-              selected={seletSize}
-              data="xxxl"
-              onClick={(e) => {
-                setSeletSize("xxxl");
-              }}
-            >
-              <Filter>xxxl</Filter>
-            </FilterCover>
+            {ProductDetails?.size?.map((sz) => {
+              return (
+                <FilterCover
+                  key={sz}
+                  selected={selectSize}
+                  data={sz}
+                  onClick={(e) => {
+                    setSelectSize(sz);
+                  }}
+                >
+                  <Filter>{sz}</Filter>
+                </FilterCover>
+              );
+            })}
           </FilterContainer>
           <AmountContainer>
             <FilterTitle>Amount</FilterTitle>
@@ -258,7 +232,7 @@ const ProductDescription = () => {
           </AmountContainer>
           <BtnContainer>
             <Button>Buy Now</Button>
-            <Button>Add To Cart</Button>
+            <Button onClick={handleAddToCart}>Add To Cart</Button>
           </BtnContainer>
         </InfoContainer>
       </Wrapper>

@@ -1,5 +1,10 @@
 import { Input } from "./styles";
-function InputField({ placeholder = "", dispatch = () => {}, value = "" }) {
+function InputField({
+  placeholder = "",
+  dispatch = () => {},
+  value = "",
+  type = "text",
+}) {
   const handleTextboxChange = (event) => {
     dispatch((state) => {
       let newState = { ...state };
@@ -13,6 +18,7 @@ function InputField({ placeholder = "", dispatch = () => {}, value = "" }) {
       placeholder={placeholder}
       onChange={handleTextboxChange}
       value={value}
+      type={type}
     />
   );
 }

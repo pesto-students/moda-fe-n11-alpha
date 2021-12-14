@@ -24,9 +24,11 @@ export const Language = styled.span`
 `;
 export const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
+  height: 28px;
   display: ${(props) => (props.mobileView ? "none" : "flex")};
   align-items: center;
   margin-left: 25px;
+  margin-bottom: 2px;
   padding: 2px;
   ${mobile({
     display: (props) => (props.mobileView ? "flex" : "none"),
@@ -38,6 +40,7 @@ export const SearchContainer = styled.div`
 export const Input = styled.input`
   border: none;
   width: 100%;
+  height: 100%;
 `;
 
 /* Center side */
@@ -64,4 +67,7 @@ export const Right = styled.div`
 export const MenuItem = styled.div`
   margin-right: 10px;
   font-size: ${(props) => props.theme.font.size.medium};
+`;
+export const CartContainer = styled.div`
+  position: relative;
 `;

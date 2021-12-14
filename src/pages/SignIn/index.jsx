@@ -10,16 +10,22 @@ function SignIn() {
     <Container>
       <Wrapper>
         <h1>SIGN IN</h1>
-        <Form onSubmit={HandleFormData}>
+        <Form
+          onSubmit={(e) => {
+            console.log("the form data is called", e);
+            HandleFormData(e);
+          }}
+        >
           <Input
-            placeholder="username"
+            placeholder="email"
             dispatch={SetFormData}
-            value={formData["username"]}
+            value={formData["email"]}
           />
           <Input
             placeholder="password"
             dispatch={SetFormData}
             value={formData["password"]}
+            type="password"
           />
           <ErrorMessage message={Error["incompleteForm"]}></ErrorMessage>
           <Button>LOGIN</Button>

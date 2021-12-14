@@ -1,6 +1,8 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { GrCart } from "react-icons/gr";
+import { useState } from "react";
+
 import {
   Container,
   Wrapper,
@@ -11,9 +13,33 @@ import {
   Logo,
   Right,
   MenuItem,
+  CartContainer,
+  CartCounter,
 } from "./styles";
+
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const {
+    text: textSearch,
+    color,
+    size,
+  } = useSelector((state) => state.filter);
+  const [text, setText] = useState("");
+
+  const handleTextClick = (e) => {
+    navigate(`/ProductCategories?text=${text}`);
+    if (text !== textSearch) {
+      dispatch(UpdateFilterAndUpdateProducts({ text, color, size }));
+    }
+  };
   return (
     <Container>
       <Wrapper>
@@ -24,8 +50,12 @@ const Navbar = () => {
         </Left>
         <Center>
           <SearchContainer>
-            <Input />
-            <BsSearch></BsSearch>
+            <Input
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Search"
+            />
+            <BsSearch size={20} onClick={handleTextClick}></BsSearch>
           </SearchContainer>
         </Center>
         <Right>
@@ -37,15 +67,22 @@ const Navbar = () => {
           </MenuItem>
           <MenuItem>
             <Link to="/cart">
-              <GrCart />
+              <CartContainer>
+                <GrCart />
+              
+              </CartContainer>
             </Link>
           </MenuItem>
         </Right>
       </Wrapper>
 
       <SearchContainer mobileView>
-        <Input />
-        <BsSearch></BsSearch>
+        <Input
+          value={textSearch}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Search"
+        />
+        <BsSearch size={20} onClick={handleTextClick}></BsSearch>
       </SearchContainer>
     </Container>
   );

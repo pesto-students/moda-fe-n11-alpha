@@ -32,6 +32,8 @@ const theme = {
   },
   buttons: {
     colored: {
+      display: "block",
+      "margin-top": "1rem",
       width: "40%",
       border: "none",
       padding: "15px 20px",

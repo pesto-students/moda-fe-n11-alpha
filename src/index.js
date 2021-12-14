@@ -6,7 +6,7 @@ import store from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-
+import("./api/Interceptor");
 ReactDOM.render(
   <React.StrictMode>
     <ToastContainer />

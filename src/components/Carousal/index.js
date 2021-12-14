@@ -12,10 +12,16 @@ import {
   Desc,
 } from "./styles";
 import useCarousal from "./useCarousalHook";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Carousal = () => {
+  const navigate = useNavigate();
+
   const [slideIndex, handleClick] = useCarousal();
+
+  function handleBtnClick() {
+    navigate(`/ProductCategories`);
+  }
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
@@ -30,8 +36,8 @@ const Carousal = () => {
             <InfoContainer>
               <h1>{item.title}</h1>
               <Desc>{item.desc}</Desc>
-              <Button variant="light">
-                <Link to="/ProductCategories">SHOP NOW</Link>
+              <Button onClick={handleBtnClick} variant="light">
+                SHOP NOW
               </Button>
             </InfoContainer>
           </Slide>

@@ -1,9 +1,18 @@
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { RiDeleteBinLine } from "react-icons/ri";
 import styled from "styled-components";
 import Announcements from "../../components/Announcements";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { mobile } from "../../responsive";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  DeleteproductInCart,
+  IncProductInCart,
+  DecProductInCart,
+} from "../../redux/slices/CartSlice";
+
+import React from "react";
 
 const Container = styled.div``;
 
@@ -56,6 +65,12 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
+  & #deleteIcon {
+    position: absolute;
+    top: 0%;
+    right: 5%;
+  }
 `;
 
 const ProductDetail = styled.div`
@@ -151,96 +166,117 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   return (
     <Container>
       <Navbar />
       <Announcements />
-      <Wrapper>
-        <Title>YOUR BAG</Title>
-        <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
-          <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
-          </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
-        </Top>
-        <Bottom>
-          <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> JESSIE THUNDER SHOES
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <AiOutlinePlus />
-                  <ProductAmount>2</ProductAmount>
-                  <AiOutlineMinus />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> HAKURA T-SHIRT
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <AiOutlinePlus />
-                  <ProductAmount>1</ProductAmount>
-                  <AiOutlineMinus />
-                </ProductAmountContainer>
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
-          </Info>
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
-            </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-          </Summary>
-        </Bottom>
-      </Wrapper>
+      {cart.length ? (
+        <Wrapper>
+          <Title>YOUR BAG</Title>
+          <Top>
+            <TopButton>CONTINUE SHOPPING</TopButton>
+            <TopTexts>
+              <TopText>Shopping Bag({cart.length})</TopText>
+            </TopTexts>
+            <TopButton type="filled">CHECKOUT NOW</TopButton>
+          </Top>
+          <Bottom>
+            <Info>
+              {cart.map(({ id, name, color, size, image, quantity }) => {
+                return (
+                  <React.Fragment key={`${id}${color}${size}`}>
+                    <Product>
+                      <ProductDetail>
+                        <Image src={image} />
+                        <Details>
+                          <ProductName>
+                            <b>Product:</b> {name}
+                          </ProductName>
+                          <ProductId>
+                            <b>ID:</b> {id}
+                          </ProductId>
+                          <ProductColor color={color} />
+                          <ProductSize>
+                            <b>Size:</b> {size}
+                          </ProductSize>
+                        </Details>
+                      </ProductDetail>
+                      <PriceDetail>
+                        <RiDeleteBinLine
+                          id="deleteIcon"
+                          size={30}
+                          onClick={() => {
+                            console.log("delete button clicked");
+                            dispatch(
+                              DeleteproductInCart({
+                                id,
+                                color,
+                                size,
+                              })
+                            );
+                          }}
+                        />
+                        <ProductAmountContainer>
+                          <span
+                            onClick={(e) => {
+                              dispatch(IncProductInCart({ id, color, size }));
+                              // setQty((q) => {
+                              //   if (q > 2) return q - 1;
+                              //   else return 1;
+                              // });
+                            }}
+                          >
+                            <AiOutlinePlus />
+                          </span>
+                          <ProductAmount>{quantity}</ProductAmount>
+                          <span
+                            onClick={(e) => {
+                              if (quantity >= 2) {
+                                dispatch(DecProductInCart({ id, color, size }));
+                              } // setQty((q) => {
+                              //   if (q > 2) return q - 1;
+                              //   else return 1;
+                              // });
+                            }}
+                          >
+                            <AiOutlineMinus />
+                          </span>
+                        </ProductAmountContainer>
+                        <ProductPrice>{quantity * 2}$</ProductPrice>
+                      </PriceDetail>
+                    </Product>
+                    <Hr />
+                  </React.Fragment>
+                );
+              })}
+            </Info>
+            <Summary>
+              <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+              <SummaryItem>
+                <SummaryItemText>Subtotal</SummaryItemText>
+                <SummaryItemPrice>$ 80</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>Estimated Shipping</SummaryItemText>
+                <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>Shipping Discount</SummaryItemText>
+                <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem type="total">
+                <SummaryItemText>Total</SummaryItemText>
+                <SummaryItemPrice>$ 80</SummaryItemPrice>
+              </SummaryItem>
+              <Button>CHECKOUT NOW</Button>
+            </Summary>
+          </Bottom>
+        </Wrapper>
+      ) : (
+        <Title>Your Bag is Empty</Title>
+      )}
       <Footer />
     </Container>
   );

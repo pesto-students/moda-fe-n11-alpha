@@ -1,15 +1,22 @@
 import { useState } from "react";
+import { LogUserInStore } from "../../redux/slices/UserSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getCartForUser } from "../../redux/slices/CartSlice";
 
 function useSignInHook() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, SetFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const [Error, setError] = useState({});
 
   const ValidateForm = () => {
-    if (formData["username"] === "" || formData["password"] === "") {
+    if (formData["email"] === "" || formData["password"] === "") {
       console.log(formData);
       setError((state) => {
         return {
@@ -20,12 +27,18 @@ function useSignInHook() {
       });
     }
   };
-  const HandleFormData = (e) => {
-    setError({});
+  const HandleFormData = async (e) => {
     e.preventDefault();
+    setError({});
     ValidateForm();
     if (Object.keys(Error).length === 0) {
-      console.log(Object.keys(Error).length);
+      try {
+        await dispatch(LogUserInStore(formData));
+        navigate("/");
+        dispatch(getCartForUser(formData["email"]));
+      } catch (e) {
+        console.log(e.message);
+      }
     }
   };
 

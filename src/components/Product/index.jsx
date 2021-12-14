@@ -5,7 +5,6 @@ const Product = ({ img, id }) => {
   const navigate = useNavigate();
 
   function handleClick() {
-    console.log("clicked....");
     navigate(`/ProductDescription/${id}`);
   }
 

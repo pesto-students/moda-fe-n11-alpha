@@ -4,7 +4,11 @@ import styled from "styled-components";
 import Newsletter from "../../components/Newsletter";
 import Footer from "../../components/Footer";
 import Product from "../../components/Product";
-import { popularProducts } from "../../Data";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
+import { useNavigate } from "react-router-dom";
 
 const Title = styled.h1``;
 const FilterContainer = styled.div`
@@ -20,6 +24,7 @@ const FilterText = styled.span`
 const Select = styled.select`
   padding: 15px;
   margin-left: 10px;
+  border: 1px solid blue;
 `;
 const Option = styled.option``;
 const ProductContainer = styled.section`
@@ -31,54 +36,101 @@ const ProductContainer = styled.section`
   }
 `;
 function ProductCategories() {
+  const colorOptions = [
+    { label: "red", value: "red" },
+    { label: "green", value: "green" },
+    { label: "blue", value: "blue" },
+    { label: "yellow", value: "yellow" },
+    { label: "black", value: "black" },
+    { label: "white", value: "white" },
+  ];
+  const sizeOptions = [
+    { label: "sm", value: "sm" },
+    { label: "m", value: "m" },
+    { label: "l", value: "l" },
+    { label: "xl", value: "xl" },
+    { label: "xxl", value: "xxl" },
+  ];
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const text = useSelector((state) => state.filter.text);
+
+  const products = useSelector((state) => state.product);
+
+  const [colorFilter, setColorFilter] = useState("");
+
+  const [sizeFilter, setSizeFilter] = useState("");
+
+  const handleColorChange = (color) => {
+    setColorFilter(color);
+  };
+  const handleSizeChange = (size) => {
+    setSizeFilter(size);
+  };
+
+  useEffect(() => {
+    dispatch(
+      UpdateFilterAndUpdateProducts({
+        color: colorFilter,
+        size: sizeFilter,
+        text,
+      })
+    );
+    navigate(
+      `/ProductCategories?color=${colorFilter}&size=${sizeFilter}&text=${text}`
+    );
+  }, [colorFilter, sizeFilter, dispatch]);
+
   return (
-    <div>
+    <>
       <Navbar />
       <Announcements />
       <Title>Dresses</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Product Search Filter:</FilterText>
-          <Select>
-            <Option disabled selected>
-              color
+          <Select onChange={(e) => handleColorChange(e.target.value)}>
+            <Option value={""} defaultValue={""}>
+              Color
             </Option>
-            <Option>Red</Option>
-            <Option>Green</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Black</Option>
-            <Option>White</Option>
+            {colorOptions.map((color) => (
+              <Option key={color.label} value={color.value}>
+                {color.label}
+              </Option>
+            ))}
           </Select>
-          <Select>
-            <Option disabled selected>
-              size
+          <Select onChange={(e) => handleSizeChange(e.target.value)}>
+            <Option value={""} defaultValue={""}>
+              Size
             </Option>
-            <Option>s</Option>
-            <Option>m</Option>
-            <Option>l</Option>
-            <Option>xl</Option>
-            <Option>xxl</Option>
-            <Option>xxxl</Option>
+            {sizeOptions.map((size) => (
+              <Option key={size.label} value={size.value}>
+                {size.label}
+              </Option>
+            ))}
           </Select>
         </Filter>
         <Filter>
           <FilterText>Product Sort Filter:</FilterText>
           <Select>
-            <Option selected>Newest</Option>
-            <Option>Price(asc)</Option>
-            <Option>Price(desc)</Option>
+            <Option defaultValue={""}>Sort Products</Option>
+            <Option>Newest(asc)</Option>
+            <Option>Newest(desc)</Option>
           </Select>
         </Filter>
       </FilterContainer>
       <ProductContainer>
-        {popularProducts.map(({ id, img }) => (
-          <Product key={id} img={img} />
-        ))}
+        {products &&
+          products.map(({ _id, images }) => (
+            <Product key={_id} img={images.split("~")[0]} id={_id} />
+          ))}
       </ProductContainer>
       <Newsletter />
       <Footer />
-    </div>
+    </>
   );
 }
 

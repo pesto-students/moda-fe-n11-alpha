@@ -34,17 +34,12 @@ export const Input = styled.input`
   padding: 10px;
 `;
 
-export const Agreement = styled.input`
-  font-size: 12px;
-  margin: 20px 0px;
-`;
-
-export const Button = styled.button`
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  ${mobile({ width: "100%" })}
+export const LoginLink = styled.div`
+  text-decoration: underline;
+  color: blue;
+  margin-top: 5%;
+  width: 100%;
+  & a {
+    color: blue;
+  }
 `;

@@ -9,6 +9,8 @@ export const CustomButton = styled.button`
   cursor: ${(props) => props.theme.buttons[props.variant].cursor};
   background-color: ${(props) =>
     props.theme.buttons[props.variant]["background-color"]};
+  display: ${(props) => props.theme.buttons[props.variant].display};
+  margin-top: ${(props) => props.theme.buttons[props.variant]["margin-top"]};
   ${mobile({ width: "100%" })};
   &:active {
     transform: scale(0.98);
