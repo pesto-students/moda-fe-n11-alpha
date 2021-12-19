@@ -3,6 +3,7 @@ import { LogUserInStore } from "../../redux/slices/UserSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCartForUser } from "../../redux/slices/CartSlice";
+import { toast } from "react-toastify";
 
 function useSignInHook() {
   const dispatch = useDispatch();
@@ -34,10 +35,12 @@ function useSignInHook() {
     if (Object.keys(Error).length === 0) {
       try {
         await dispatch(LogUserInStore(formData));
+        toast.success("You are logged in successfully");
         navigate("/");
         dispatch(getCartForUser(formData["email"]));
       } catch (e) {
-        console.log(e.message);
+        toast.error("Wrong credentials");
+        console.log(e.message, e);
       }
     }
   };

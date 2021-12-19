@@ -1,40 +1,17 @@
-import Announcements from "../../components/Announcements";
-import Navbar from "../../components/Navbar";
-import styled from "styled-components";
-import Newsletter from "../../components/Newsletter";
-import Footer from "../../components/Footer";
-import Product from "../../components/Product";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-const Title = styled.h1``;
-const FilterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const Filter = styled.div``;
-const FilterText = styled.span`
-  font-size: 20px;
-  font-weight: 600;
-`;
-
-const Select = styled.select`
-  padding: 15px;
-  margin-left: 10px;
-  border: 1px solid blue;
-`;
-const Option = styled.option``;
-const ProductContainer = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  & div {
-    margin: 0.5rem 0;
-  }
-`;
+import Product from "../../components/Product";
+import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
+import {
+  Title,
+  FilterContainer,
+  Filter,
+  FilterText,
+  Select,
+  Option,
+  ProductContainer,
+} from "./styles";
 function ProductCategories() {
   const colorOptions = [
     { label: "red", value: "red" },
@@ -82,12 +59,10 @@ function ProductCategories() {
     navigate(
       `/ProductCategories?color=${colorFilter}&size=${sizeFilter}&text=${text}`
     );
-  }, [colorFilter, sizeFilter, dispatch]);
+  }, [colorFilter, sizeFilter, dispatch, navigate, text]);
 
   return (
     <>
-      <Navbar />
-      <Announcements />
       <Title>Dresses</Title>
       <FilterContainer>
         <Filter>
@@ -124,12 +99,17 @@ function ProductCategories() {
       </FilterContainer>
       <ProductContainer>
         {products &&
-          products.map(({ _id, images }) => (
-            <Product key={_id} img={images.split("~")[0]} id={_id} />
+          products.map(({ _id, name, images, size, color }) => (
+            <Product
+              key={_id}
+              name={name}
+              size={size[0]}
+              color={color[0]}
+              img={images.split("~")[0]}
+              id={_id}
+            />
           ))}
       </ProductContainer>
-      <Newsletter />
-      <Footer />
     </>
   );
 }

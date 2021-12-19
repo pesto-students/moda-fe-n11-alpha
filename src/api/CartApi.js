@@ -7,8 +7,12 @@ export const get = async (uri, userId) => {
   return res.data;
 };
 export const post = async (uri, data) => {
-  console.log("***this is cart api***", data);
   const res = await axios.post(uri, data);
-  console.log(res);
+  return res;
+};
+
+export const Delete = async (uri, { email, id, size, color, qty }) => {
+  let uri_withParams = `${uri}?email=${email}&id=${id}&size=${size}&color=${color}&qty=${qty}`;
+  const res = await axios.delete(uri_withParams);
   return res.data;
 };

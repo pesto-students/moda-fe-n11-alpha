@@ -1,7 +1,5 @@
-import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { GrCart } from "react-icons/gr";
-import { useState } from "react";
 
 import {
   Container,
@@ -14,32 +12,13 @@ import {
   Right,
   MenuItem,
   CartContainer,
-  CartCounter,
 } from "./styles";
 
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
-import { useNavigate } from "react-router-dom";
-
+import useNavbarFunctionality from "./useNavbarFunctionalityHook";
 const Navbar = () => {
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
-  const {
-    text: textSearch,
-    color,
-    size,
-  } = useSelector((state) => state.filter);
-  const [text, setText] = useState("");
-
-  const handleTextClick = (e) => {
-    navigate(`/ProductCategories?text=${text}`);
-    if (text !== textSearch) {
-      dispatch(UpdateFilterAndUpdateProducts({ text, color, size }));
-    }
-  };
+  const [text, setText, handleTextClick, email, textSearch, Logout] =
+    useNavbarFunctionality();
   return (
     <Container>
       <Wrapper>
@@ -59,17 +38,30 @@ const Navbar = () => {
           </SearchContainer>
         </Center>
         <Right>
-          <MenuItem>
-            <Link to="/signin">SignIn</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/signup">Register</Link>
-          </MenuItem>
+          {!email ? (
+            <>
+              <MenuItem>
+                <Link to="/signin">SignIn</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/signup">Register</Link>
+              </MenuItem>
+            </>
+          ) : (
+            <MenuItem>
+              <div
+                onClick={() => {
+                  Logout();
+                }}
+              >
+                Logout
+              </div>
+            </MenuItem>
+          )}
           <MenuItem>
             <Link to="/cart">
               <CartContainer>
                 <GrCart />
-              
               </CartContainer>
             </Link>
           </MenuItem>

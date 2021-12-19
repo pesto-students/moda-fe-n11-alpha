@@ -1,7 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-import { toast } from "react-toastify";
-
 import { GetproductsInStore } from "../../redux/slices/ProductSlice";
 
 // Slice
@@ -10,7 +7,6 @@ const slice = createSlice({
   initialState: { color: "", size: "", text: "" },
   reducers: {
     AddorChangeColorSizeText: (state, { payload }) => {
-      console.log("****the payload is as follows***", payload);
       return { ...state, ...payload };
     },
   },

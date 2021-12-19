@@ -1,6 +1,8 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { get, post } from "../../api/CartApi";
+import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { get, post, Delete } from "../../api/CartApi";
+import { toast } from "react-toastify";
+
 const uri = "/cart";
 
 const slice = createSlice({
@@ -62,14 +64,20 @@ const slice = createSlice({
       );
       state[index] = action.payload;
     },
-    DeleteAllproduct: (state, action) => {
+    clearCart: (state, action) => {
       return [];
     },
   },
 });
 export default slice.reducer;
-const { Addproduct, DecProductQty, Deleteproduct, GetProduct, IncProductQty } =
-  slice.actions;
+const {
+  Addproduct,
+  DecProductQty,
+  Deleteproduct,
+  GetProduct,
+  IncProductQty,
+  clearCart,
+} = slice.actions;
 
 export const getCartForUser = (email) => async (dispatch) => {
   try {
@@ -82,6 +90,7 @@ export const getCartForUser = (email) => async (dispatch) => {
 export const AddproductInCart = (email, product) => async (dispatch) => {
   try {
     await post(uri, { email, product });
+    toast.success("Product added or updated in the cart");
     dispatch(Addproduct(product));
   } catch (e) {
     return console.error(e.message);
@@ -90,6 +99,7 @@ export const AddproductInCart = (email, product) => async (dispatch) => {
 
 export const DeleteproductInCart = (data) => async (dispatch) => {
   try {
+    await Delete(uri, data);
     dispatch(Deleteproduct(data));
   } catch (e) {
     return console.error(e.message);
@@ -97,33 +107,24 @@ export const DeleteproductInCart = (data) => async (dispatch) => {
 };
 
 export const IncProductInCart =
-  ({ id, color, size }) =>
+  ({ email, id, color, size }) =>
   async (dispatch) => {
     try {
+      const res = await axios.patch(uri, { email, id, size, color, qty: 1 });
+      console.log(res.status);
       dispatch(IncProductQty({ id, color, size }));
     } catch (e) {}
   };
 
 export const DecProductInCart =
-  ({ id, color, size }) =>
+  ({ email, id, color, size }) =>
   async (dispatch) => {
     try {
+      const res = await axios.patch(uri, { email, id, size, color, qty: -1 });
+      console.log(res.status);
       dispatch(DecProductQty({ id, color, size }));
     } catch (e) {}
   };
-// export const EditproductInStore = (data) => async (dispatch) => {
-//   try {
-//     const res = await put(uri, data);
-//     return dispatch(Editproduct(res));
-//   } catch (e) {
-//     return console.error(e.message);
-//   }
-// };
-// export const DeleteproductInStore = (data) => async (dispatch) => {
-//   try {
-//     let r = await deleteproduct(uri, data);
-//     return dispatch(Deleteproduct(data));
-//   } catch (e) {
-//     return console.error(e.message);
-//   }
-// };
+export const ClearAllCartItems = () => async (dispatch) => {
+  dispatch(clearCart());
+};

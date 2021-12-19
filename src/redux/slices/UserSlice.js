@@ -8,6 +8,9 @@ const slice = createSlice({
   name: "user",
   initialState: {},
   reducers: {
+    LogoutUser: (state, action) => {
+      return {};
+    },
     GetUser: (state, action) => {
       state = action.payload;
       return state;
@@ -27,7 +30,7 @@ const slice = createSlice({
 });
 export default slice.reducer;
 // Actions
-const { AddUser, EditUser, GetUser } = slice.actions;
+const { AddUser, LogoutUser } = slice.actions;
 
 export const AddUserInStore = (data) => async (dispatch) => {
   try {
@@ -43,6 +46,14 @@ export const LogUserInStore = (data) => async (dispatch) => {
   try {
     const res = await login(`/user/login`, data);
     dispatch(AddUser(res));
+  } catch (e) {
+    console.log("error caught in store *******");
+    throw e;
+  }
+};
+export const LogOutUserInStore = (data) => async (dispatch) => {
+  try {
+    dispatch(LogoutUser());
   } catch (e) {
     throw e;
   }

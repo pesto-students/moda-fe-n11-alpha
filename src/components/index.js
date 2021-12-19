@@ -7,3 +7,4 @@ export { default as Navbar } from "./Navbar";
 export { default as Footer } from "./Footer";
 export { default as Announcements } from "./Announcements";
 export { default as Newsletter } from "./Newsletter";
+export { default as Payment } from "./Payment";

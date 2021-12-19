@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input, ErrorMessage, Button } from "../../components";
 import { Container, Wrapper, Link, Form } from "./styles";
 import useSignInHook from "./useSignInHook";
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function SignIn() {
   const { formData, SetFormData, HandleFormData, Error } = useSignInHook();
+  const navigate = useNavigate();
+  const email = useSelector((state) => state?.user?.email);
+
+  useEffect(() => {
+    if (email) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Container>

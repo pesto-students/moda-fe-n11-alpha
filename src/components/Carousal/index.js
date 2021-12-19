@@ -13,11 +13,19 @@ import {
 } from "./styles";
 import useCarousal from "./useCarousalHook";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 
 const Carousal = () => {
   const navigate = useNavigate();
 
   const [slideIndex, handleClick] = useCarousal();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleClick("right");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [slideIndex]);
 
   function handleBtnClick() {
     navigate(`/ProductCategories`);

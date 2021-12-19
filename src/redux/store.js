@@ -25,17 +25,17 @@ const reducer = combineReducers({
   filter: FilterReducer,
   cart: CartReducer,
 });
-// export const store = configureStore({
-//   reducer,
-// });
+export const store = configureStore({
+  reducer,
+});
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-export default configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-});
+// export default configureStore({
+//   reducer: persistedReducer,
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+// });

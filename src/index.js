@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import store from "./redux/store";
+import { store } from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,9 +17,10 @@ ReactDOM.render(
   <React.StrictMode>
     <ToastContainer />
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <App />
+      {/* <PersistGate persistor={persistor}>
         <App />
-      </PersistGate>
+      </PersistGate> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
