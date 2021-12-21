@@ -55,14 +55,14 @@ export const ProductDetail = styled.div`
   display: flex;
 `;
 export const Image = styled.img`
-  width: 200px;
+  width: 50%;
 `;
 export const Details = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  ${mobile({ padding: "0px" })}
+  ${mobile({ marginLeft: "5px" })}
 `;
 export const ProductName = styled.span``;
 export const ProductId = styled.span``;

@@ -4,7 +4,7 @@ import { GetproductsInStore } from "../../redux/slices/ProductSlice";
 // Slice
 const slice = createSlice({
   name: "filter",
-  initialState: { color: "", size: "", text: "" },
+  initialState: { color: "", size: "", gender: "", text: "", page: 1 },
   reducers: {
     AddorChangeColorSizeText: (state, { payload }) => {
       return { ...state, ...payload };

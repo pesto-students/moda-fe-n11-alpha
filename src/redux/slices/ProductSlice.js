@@ -11,6 +11,9 @@ const slice = createSlice({
       state = action.payload;
       return state;
     },
+    AddMoreItems: (state, action) => {
+      return [...state, ...action.payload];
+    },
     Addproduct: (state, action) => {
       let data = action.payload;
       data.id = state.length + 1;
@@ -33,14 +36,16 @@ const slice = createSlice({
 export default slice.reducer;
 
 // Actions
-const { Addproduct, Editproduct, Deleteproduct, Getproduct } = slice.actions;
+const { Addproduct, AddMoreItems, Editproduct, Deleteproduct, Getproduct } =
+  slice.actions;
 
 export const GetproductsInStore =
-  ({ color = "", size = "", text = "" }) =>
+  ({ color = "", size = "", text = "", gender = "", page = 1 }) =>
   async (dispatch) => {
     try {
-      const res = await get(uri, { color, size, text });
-      dispatch(Getproduct(res));
+      const res = await get(uri, { color, size, text, gender, page });
+      if (page === 1) dispatch(Getproduct(res));
+      else dispatch(AddMoreItems(res));
     } catch (e) {
       console.log(e.message);
       return e.message;

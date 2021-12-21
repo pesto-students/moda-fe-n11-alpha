@@ -1,7 +1,6 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RiDeleteBinLine } from "react-icons/ri";
-import Footer from "../../components/Footer";
 import CartSummary from "./CartSummary";
 import {
   Bottom,
@@ -25,7 +24,7 @@ import {
   TopButton,
   TopText,
   TopTexts,
-  Wrapper,
+  Wrapper
 } from "./styles";
 import useCartFunctionalityHook from "./useCartFunctionalityHook";
 const Cart = () => {

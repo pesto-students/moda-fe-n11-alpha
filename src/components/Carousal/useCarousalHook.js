@@ -1,7 +1,11 @@
-import { data } from "../../Data";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 function useCarousalHook() {
+  const navigate = useNavigate();
   const [slideIndex, setslideIndex] = useState(0);
+  const data = useSelector((state) => state.home.SaleAndOffer);
+
   const handleClick = (direction) => {
     let len = 0;
     if (direction === "right") {
@@ -11,6 +15,11 @@ function useCarousalHook() {
     }
     setslideIndex(len);
   };
-  return [slideIndex, handleClick];
+
+  function handleBtnClick() {
+    navigate(`/ProductCategories`);
+  }
+
+  return [data, handleBtnClick, slideIndex, handleClick];
 }
 export default useCarousalHook;

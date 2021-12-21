@@ -10,10 +10,11 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.color.modaLightYellow};
   position: relative;
   border-radius: 20px;
-  box-shadow: 0 7px 30px -10px rgb(10 10 10 / 89%); ;
+  box-shadow: 0 7px 30px -10px rgb(10 10 10 / 89%);
+  ${mobile({ width: "100%" })}
 `;
 export const Image = styled.img`
-  width: auto;
+  width: 100%;
   height: 100%;
   object-fit: fill;
   overflow: hidden;

@@ -17,8 +17,14 @@ import {
 import { Link } from "react-router-dom";
 import useNavbarFunctionality from "./useNavbarFunctionalityHook";
 const Navbar = () => {
-  const [text, setText, handleTextClick, email, textSearch, Logout] =
-    useNavbarFunctionality();
+  const [
+    text,
+    handleTextClick,
+    email,
+    textSearch,
+    Logout,
+    debounceSearch = () => {},
+  ] = useNavbarFunctionality();
   return (
     <Container>
       <Wrapper>
@@ -31,7 +37,7 @@ const Navbar = () => {
           <SearchContainer>
             <Input
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={debounceSearch}
               placeholder="Search"
             />
             <BsSearch size={20} onClick={handleTextClick}></BsSearch>
@@ -71,7 +77,7 @@ const Navbar = () => {
       <SearchContainer mobileView>
         <Input
           value={textSearch}
-          onChange={(e) => setText(e.target.value)}
+          onChange={debounceSearch}
           placeholder="Search"
         />
         <BsSearch size={20} onClick={handleTextClick}></BsSearch>

@@ -1,6 +1,5 @@
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
 import Button from "../Button";
-import { data } from "../../Data";
 import {
   Container,
   Arrow,
@@ -12,30 +11,23 @@ import {
   Desc,
 } from "./styles";
 import useCarousal from "./useCarousalHook";
-import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 
 const Carousal = () => {
-  const navigate = useNavigate();
-
-  const [slideIndex, handleClick] = useCarousal();
-
+  const [data, handleBtnClick, slideIndex, handleClick] = useCarousal();
   useEffect(() => {
     const timer = setInterval(() => {
       handleClick("right");
     }, 3000);
     return () => clearTimeout(timer);
-  }, [slideIndex]);
+  }, [slideIndex, handleClick]);
 
-  function handleBtnClick() {
-    navigate(`/ProductCategories`);
-  }
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
         <VscTriangleLeft size={28} />
       </Arrow>
-      {data.map((item, index, arr) => (
+      {data?.map((item, index) => (
         <Wrapper key={index} slideIndex={slideIndex}>
           <Slide>
             <ImgContainer>

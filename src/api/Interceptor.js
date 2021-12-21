@@ -1,5 +1,6 @@
 const axios = require("axios");
 
+console.log("Interceptor called");
 axios.defaults.baseURL = "http://localhost:2000/api/v1";
 // axios.defaults.withCredentials = true;
 axios.interceptors.request.use((req) => {

@@ -5,11 +5,13 @@ import Carousal from "../../components/Carousal";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Carousal />
+      <h1>Popular Categories</h1>
       <Categories />
+      <h1>Popular Products</h1>
       <PopularProductsList />
-    </div>
+    </>
   );
 };
 

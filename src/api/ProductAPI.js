@@ -1,11 +1,14 @@
 import axios from "axios";
 
-export const get = async (uri, { color = "", size = "", text = "" }) => {
-  let uri_withParams = `${uri}?color=${color}&size=${size}&text=${text}`;
+export const get = async (
+  uri,
+  { color = "", size = "", text = "", gender = "", page = 1 }
+) => {
+  let uri_withParams = `${uri}?color=${color}&size=${size}&text=${text}&gender=${gender}&page=${page}`;
   const res = await axios.get(uri_withParams);
-  console.log(res);
   return res.data;
 };
+
 export const post = async (uri, data) => {
   let res = await fetch(uri, {
     method: "post",
