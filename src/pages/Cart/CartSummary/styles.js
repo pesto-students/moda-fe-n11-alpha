@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const Summary = styled.div`
+export const Summary = styled.aside`
   flex: 1;
   border: 0.5px solid lightgray;
   border-radius: 10px;
@@ -9,7 +9,7 @@ export const Summary = styled.div`
 export const SummaryTitle = styled.h1`
   font-weight: 200;
 `;
-export const SummaryItem = styled.div`
+export const SummaryItem = styled.section`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;

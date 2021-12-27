@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
 import { LogOutUserInStore } from "../../redux/slices/UserSlice";
 import { ClearAllCartItems } from "../../redux/slices/CartSlice";
+import { debounce } from "lodash";
 
 function useNavbarFunctionality() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {
     text: textSearch,
     color,
@@ -17,8 +19,7 @@ function useNavbarFunctionality() {
   const { email } = useSelector((state) => state.user);
   const [text, setText] = useState("");
   let Location = useLocation();
-  console.log("this is location", Location);
-  let timer = () => {};
+
   const Logout = () => {
     dispatch(LogOutUserInStore());
     dispatch(ClearAllCartItems());
@@ -31,20 +32,18 @@ function useNavbarFunctionality() {
       dispatch(UpdateFilterAndUpdateProducts({ text, color, size, gender }));
     }
   };
-  const debounceSearch = (e) => {
-    console.log("debounce method is called");
-    setText(e.target.value);
-    if (Location.pathname === "/ProductCategories") {
-      timer = setTimeout(() => {
-        dispatch(UpdateFilterAndUpdateProducts({ text, color, size, gender }));
-      }, 3000);
-    }
+  const getValue = (val) => {
+    console.log("the debounce method is called", val);
+    dispatch(UpdateFilterAndUpdateProducts({ text: val, color, size, gender }));
   };
-  useEffect(() => {
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+  const debounceDropDown = useCallback(
+    debounce((val) => getValue(val), 3000),
+    []
+  );
+  const debounceSearch = (e) => {
+    setText(e.target.value);
+    debounceDropDown(e.target.value);
+  };
 
   return [text, handleTextClick, email, textSearch, Logout, debounceSearch];
 }

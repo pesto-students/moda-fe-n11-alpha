@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.main`
   display: flex;
   gap: 2rem;
   ${mobile({ flexDirection: "column" })}
 `;
-export const ImgContainer = styled.div`
+export const InfoContainer = styled.article`
+  flex: 2.5;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+`;
+export const ImgContainer = styled.figure`
   border: 1px solid lightgrey;
   margin: 0.5rem;
   flex: 1;
@@ -16,27 +22,22 @@ export const Image = styled.img`
   width: 100%;
   object-fit: cover;
 `;
-export const InfoContainer = styled.div`
-  flex: 2.5;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
+
 export const Title = styled.h1`
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 400;
 `;
-export const Desc = styled.div`
+export const Desc = styled.article`
   letter-spacing: 0.02em;
   word-spacing: 0.1em;
   margin-top: 20px;
 `;
-export const Price = styled.div`
+export const Price = styled.section`
   margin-top: 1rem;
   font-weight: 200;
   font-size: 30px;
 `;
-export const FilterContainer = styled.div`
+export const FilterContainer = styled.section`
   display: flex;
   gap: 0.5rem;
   margin-top: 2rem;

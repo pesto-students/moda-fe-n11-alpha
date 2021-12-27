@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 
-export const Container = styled.div`
+export const Container = styled.header`
   height: 60px;
   cursor: pointer;
   ${mobile({ width: "100vw", height: "100%" })};
 `;
-export const Wrapper = styled.div`
+export const Wrapper = styled.nav`
   padding: 10px 20px;
   display: flex;
   align-items: center;

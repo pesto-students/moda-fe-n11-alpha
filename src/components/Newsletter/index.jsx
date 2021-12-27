@@ -13,7 +13,11 @@ const Newsletter = () => {
       <Title>Newsletter</Title>
       <Desc>Get Timely Update from your favourite products.</Desc>
       <InputContainer>
-        <Input placeholder="your email" />
+        <Input
+          aria-label="Newsletter email"
+          aria-required="true"
+          placeholder="your email"
+        />
         <Button>
           <BiSend />
         </Button>

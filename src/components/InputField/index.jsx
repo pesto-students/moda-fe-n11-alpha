@@ -1,6 +1,6 @@
 import { Input } from "./styles";
 function InputField({
-  placeholder = "",
+  placeholder = "Input Field",
   dispatch = () => {},
   value = "",
   type = "text",
@@ -15,6 +15,8 @@ function InputField({
 
   return (
     <Input
+      aria-label={placeholder}
+      aria-required="true"
       placeholder={placeholder}
       onChange={handleTextboxChange}
       value={value}

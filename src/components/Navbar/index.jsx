@@ -36,6 +36,8 @@ const Navbar = () => {
         <Center>
           <SearchContainer>
             <Input
+              aria-label="globalSearch"
+              aria-required="true"
               value={text}
               onChange={debounceSearch}
               placeholder="Search"
@@ -81,6 +83,8 @@ const Navbar = () => {
 
       <SearchContainer mobileView>
         <Input
+          aria-label="mobileViewglobalSearch"
+          aria-required="true"
           value={textSearch}
           onChange={debounceSearch}
           placeholder="Search"
