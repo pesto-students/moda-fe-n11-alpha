@@ -24,7 +24,7 @@ import {
   TopButton,
   TopText,
   TopTexts,
-  Wrapper
+  Wrapper,
 } from "./styles";
 import useCartFunctionalityHook from "./useCartFunctionalityHook";
 const Cart = () => {
@@ -36,6 +36,8 @@ const Cart = () => {
     deleteProductinCart,
     increaseProductInCart,
     decreaseProductInCart,
+    calculateSubTotal,
+    calculateTotal,
   ] = useCartFunctionalityHook();
   return (
     <Container>
@@ -56,7 +58,7 @@ const Cart = () => {
             <TopButton
               type="filled"
               onClick={() => {
-                navigateToPayment();
+                navigateToPayment(cart, calculateTotal(0, 0));
               }}
             >
               CHECKOUT NOW
@@ -118,7 +120,11 @@ const Cart = () => {
                 );
               })}
             </Info>
-            <CartSummary />
+            <CartSummary
+              navigateToPayment={navigateToPayment}
+              calculateSubTotal={calculateSubTotal}
+              calculateTotal={calculateTotal}
+            />
           </Bottom>
         </Wrapper>
       ) : (

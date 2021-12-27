@@ -1,20 +1,24 @@
 import React from "react";
 import {
-  Summary,
-  SummaryTitle,
-  SummaryItem,
-  SummaryItemText,
-  SummaryItemPrice,
   Button,
+  Summary,
+  SummaryItem,
+  SummaryItemPrice,
+  SummaryItemText,
+  SummaryTitle,
 } from "./styles";
-
-function CartSummary({ navigateToPayment }) {
+function CartSummary({
+  navigateToPayment,
+  calculateSubTotal,
+  calculateTotal,
+  cart,
+}) {
   return (
     <Summary>
       <SummaryTitle>ORDER SUMMARY</SummaryTitle>
       <SummaryItem>
         <SummaryItemText>Subtotal</SummaryItemText>
-        <SummaryItemPrice>$ 80</SummaryItemPrice>
+        <SummaryItemPrice> $ {calculateSubTotal()}</SummaryItemPrice>
       </SummaryItem>
       <SummaryItem>
         <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -26,11 +30,12 @@ function CartSummary({ navigateToPayment }) {
       </SummaryItem>
       <SummaryItem type="total">
         <SummaryItemText>Total</SummaryItemText>
-        <SummaryItemPrice>$ 80</SummaryItemPrice>
+        <SummaryItemPrice>$ {calculateTotal(0, 0)}</SummaryItemPrice>
       </SummaryItem>
       <Button
         onClick={() => {
-          navigateToPayment();
+          console.log(navigateToPayment);
+          navigateToPayment(cart, calculateTotal(0, 0));
         }}
       >
         CHECKOUT NOW

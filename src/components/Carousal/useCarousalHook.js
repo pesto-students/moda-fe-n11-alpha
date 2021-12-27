@@ -9,9 +9,9 @@ function useCarousalHook() {
   const handleClick = (direction) => {
     let len = 0;
     if (direction === "right") {
-      len = slideIndex + 1 < data.length ? slideIndex + 1 : 0;
+      len = slideIndex + 1 < data?.length ? slideIndex + 1 : 0;
     } else if (direction === "left") {
-      len = slideIndex - 1 < 0 ? data.length - 1 : slideIndex - 1;
+      len = slideIndex - 1 < 0 ? data?.length - 1 : slideIndex - 1;
     }
     setslideIndex(len);
   };

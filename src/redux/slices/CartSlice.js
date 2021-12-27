@@ -110,8 +110,7 @@ export const IncProductInCart =
   ({ email, id, color, size }) =>
   async (dispatch) => {
     try {
-      const res = await axios.patch(uri, { email, id, size, color, qty: 1 });
-      console.log(res.status);
+      await axios.patch(uri, { email, id, size, color, qty: 1 });
       dispatch(IncProductQty({ id, color, size }));
     } catch (e) {}
   };
@@ -120,11 +119,11 @@ export const DecProductInCart =
   ({ email, id, color, size }) =>
   async (dispatch) => {
     try {
-      const res = await axios.patch(uri, { email, id, size, color, qty: -1 });
-      console.log(res.status);
+      await axios.patch(uri, { email, id, size, color, qty: -1 });
       dispatch(DecProductQty({ id, color, size }));
     } catch (e) {}
   };
 export const ClearAllCartItems = () => async (dispatch) => {
+  console.log("*******clear cart items called****");
   dispatch(clearCart());
 };

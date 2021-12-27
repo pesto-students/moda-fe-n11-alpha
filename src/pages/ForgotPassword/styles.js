@@ -8,7 +8,7 @@ export const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjsW9qRxm7Et-0tFaDK_nL0EXfhlh7Dwl3Mw&usqp=CAU")
       center;
   background-size: cover;
   display: flex;
@@ -28,7 +28,7 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
-export const Link = styled.a`
+export const Link = styled.div`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;

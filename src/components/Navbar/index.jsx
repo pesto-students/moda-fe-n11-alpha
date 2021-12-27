@@ -54,15 +54,20 @@ const Navbar = () => {
               </MenuItem>
             </>
           ) : (
-            <MenuItem>
-              <div
-                onClick={() => {
-                  Logout();
-                }}
-              >
-                Logout
-              </div>
-            </MenuItem>
+            <>
+              <MenuItem>
+                <div
+                  onClick={() => {
+                    Logout();
+                  }}
+                >
+                  Logout
+                </div>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/order">Orders</Link>
+              </MenuItem>
+            </>
           )}
           <MenuItem>
             <Link to="/cart">

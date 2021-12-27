@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
-import { post, login } from "../../api/UserApi";
+import { login, post } from "../../api/UserApi";
 
 const uri = "/user";
 
@@ -34,7 +33,6 @@ const { AddUser, LogoutUser } = slice.actions;
 
 export const AddUserInStore = (data) => async (dispatch) => {
   try {
-    console.log("Add userin store called with data", data);
     const res = await post(uri, data);
     dispatch(AddUser(data));
   } catch (e) {
@@ -42,17 +40,23 @@ export const AddUserInStore = (data) => async (dispatch) => {
     throw e;
   }
 };
-export const LogUserInStore = (data) => async (dispatch) => {
-  try {
-    const res = await login(`/user/login`, data);
-    dispatch(AddUser(res));
-  } catch (e) {
-    console.log("error caught in store *******");
-    throw e;
-  }
-};
+export const LogUserInStore =
+  (data = {}) =>
+  async (dispatch) => {
+    try {
+      console.log("log user is called");
+      const res = await login(`/user/login`, data);
+      console.log(res);
+      localStorage.setItem("jwt", res.token);
+      localStorage.setItem("email", res.email);
+      dispatch(AddUser(res));
+    } catch (e) {
+      throw e;
+    }
+  };
 export const LogOutUserInStore = (data) => async (dispatch) => {
   try {
+    localStorage.clear();
     dispatch(LogoutUser());
   } catch (e) {
     throw e;

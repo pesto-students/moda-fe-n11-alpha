@@ -24,6 +24,7 @@ function useNavbarFunctionality() {
     dispatch(ClearAllCartItems());
     navigate("/");
   };
+
   const handleTextClick = (e) => {
     navigate(`/ProductCategories?text=${text}`);
     if (text !== textSearch) {
@@ -44,6 +45,7 @@ function useNavbarFunctionality() {
       clearTimeout(timer);
     };
   }, []);
+
   return [text, handleTextClick, email, textSearch, Logout, debounceSearch];
 }
 

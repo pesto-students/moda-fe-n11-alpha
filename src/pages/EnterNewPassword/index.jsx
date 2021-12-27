@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Input, ErrorMessage, Button } from "../../components";
-import { Container, Wrapper, Link as StyledLink, Form } from "./styles";
-import useSignInHook from "./useSignInHook";
-import { useNavigate, Link } from "react-router-dom";
+import { Container, Wrapper, Form } from "./styles";
+import useEnterNewPassword from "./useEnterNewPassword";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function SignIn() {
-  const { formData, SetFormData, HandleFormData, Error } = useSignInHook();
+function EnterNewPassword() {
+  const { formData, SetFormData, HandleFormData, Error } =
+    useEnterNewPassword();
   const navigate = useNavigate();
   const email = useSelector((state) => state?.user?.email);
 
@@ -19,7 +20,7 @@ function SignIn() {
   return (
     <Container>
       <Wrapper>
-        <h1>SIGN IN</h1>
+        <h1>Please enter otp and new Password</h1>
         <Form
           onSubmit={(e) => {
             e.preventDefault();
@@ -27,9 +28,9 @@ function SignIn() {
           }}
         >
           <Input
-            placeholder="email"
+            placeholder="otp"
             dispatch={SetFormData}
-            value={formData["email"]}
+            value={formData["otp"]}
           />
           <Input
             placeholder="password"
@@ -38,17 +39,11 @@ function SignIn() {
             type="password"
           />
           <ErrorMessage message={Error["incompleteForm"]}></ErrorMessage>
-          <Button>LOGIN</Button>
-          <StyledLink>
-            <Link to="/forgotPassword">DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          </StyledLink>
-          <StyledLink>
-            <Link to="/signup">CREATE A NEW ACCOUNT</Link>
-          </StyledLink>
+          <Button>Confirm</Button>
         </Form>
       </Wrapper>
     </Container>
   );
 }
 
-export default SignIn;
+export default EnterNewPassword;

@@ -13,8 +13,20 @@ function useCartFunctionalityHook() {
   const navigateToProductcategories = () => {
     navigate("/ProductCategories");
   };
-  const navigateToPayment = () => {
-    navigate("/payment");
+
+  const calculateSubTotal = () => {
+    let total = 0;
+    for (let item of cart) {
+      total += item.quantity * 2;
+    }
+    return total;
+  };
+  const calculateTotal = (shippingCost, shippingDiscount) => {
+    return calculateSubTotal() + shippingCost - shippingDiscount;
+  };
+
+  const navigateToPayment = (cart, amount) => {
+    navigate("/payment", { state: { email, cart, amount } });
   };
   const deleteProductinCart = (email, id, color, size) => {
     dispatch(
@@ -40,6 +52,8 @@ function useCartFunctionalityHook() {
     deleteProductinCart,
     increaseProductInCart,
     decreaseProductInCart,
+    calculateSubTotal,
+    calculateTotal,
   ];
 }
 

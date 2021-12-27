@@ -10,3 +10,4 @@ export { default as Newsletter } from "./Newsletter";
 export { default as Payment } from "./Payment";
 export { default as FilterCheckbox } from "./FilterCheckbox";
 export { default as Product } from "./Product";
+export { default as ErrorBoundary } from "./ErrorBoundary";

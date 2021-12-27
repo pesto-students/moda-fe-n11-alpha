@@ -8,7 +8,10 @@ export const post = async (uri, data) => {
   }
 };
 
-export const login = async (uri, { username, email, password }) => {
+export const login = async (
+  uri,
+  { username = "", email = "", password = "" }
+) => {
   try {
     let res = await axios.post(uri, { email, password });
     return res.data;

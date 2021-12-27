@@ -22,7 +22,7 @@ export const getHomePageData = () => async (dispatch) => {
   const data = await get();
   const popularProducts = await getPopularProducts();
 
-  dispatch(GetProducts(data[0]));
+  dispatch(GetProducts(data && data[0]));
   dispatch(GetPopularProducts(popularProducts));
   try {
   } catch (e) {}
