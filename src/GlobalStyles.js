@@ -16,6 +16,10 @@ const GlobalStyles = createGlobalStyle`
     font-size: 36px;
     line-height: 54px;
   }
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 export default GlobalStyles;

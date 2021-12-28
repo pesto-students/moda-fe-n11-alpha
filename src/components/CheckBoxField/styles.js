@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  fontfamily: "system-ui";
+  margintop: 10;
+`;
+
 const CheckboxContainer = styled.div`
   display: inline-block;
   vertical-align: middle;

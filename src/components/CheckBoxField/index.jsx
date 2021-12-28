@@ -1,18 +1,10 @@
-import React, { useState } from "react";
-import CheckBox from "./styles";
-
+import React from "react";
+import CheckBox, { Container } from "./styles";
+import useCheckBoxHook from "./useCheckBoxHook";
 function Checkbox({ children, dispatch, data }) {
-  const [checked, setChecked] = useState(false);
-
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
-    dispatch((state) => {
-      return { ...state, agreement: event.target.checked };
-    });
-  };
-
+  const handleCheckboxChange = useCheckBoxHook(dispatch);
   return (
-    <div style={{ fontFamily: "system-ui", marginTop: 10 }}>
+    <Container>
       <label>
         <CheckBox
           checked={data ? true : false}
@@ -20,7 +12,7 @@ function Checkbox({ children, dispatch, data }) {
         />
         <span style={{ marginLeft: 8 }}>{children}</span>
       </label>
-    </div>
+    </Container>
   );
 }
 

@@ -1,12 +1,18 @@
 import React from "react";
-import { Carousal } from "../../components";
-import BaseLayout from "../../layouts/BaseLayout";
-function Home() {
+import Categories from "../../components/Categories";
+import PopularProductsList from "../../components/PopularProductsList";
+import Carousal from "../../components/Carousal";
+
+const Home = () => {
   return (
-    <BaseLayout>
+    <>
       <Carousal />
-    </BaseLayout>
+      <h1>Popular Categories</h1>
+      <Categories />
+      <h1>Popular Products</h1>
+      <PopularProductsList />
+    </>
   );
-}
+};
 
 export default Home;

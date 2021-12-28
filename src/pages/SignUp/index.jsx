@@ -1,7 +1,7 @@
-import { Container, Wrapper, Form } from "./styles";
+import { Container, Wrapper, Form, LoginLink } from "./styles";
 import { Input, CheckBox, ErrorMessage, Button } from "../../components";
 import useSignUpHook from "./useSignUpHook";
-
+import { Link } from "react-router-dom";
 function SignUp() {
   const { formData, SetFormData, HandleFormData, Error } = useSignUpHook();
   return (
@@ -10,19 +10,20 @@ function SignUp() {
         <h1>Sign Up</h1>
         <Form onSubmit={HandleFormData}>
           <Input
-            placeholder="name"
-            dispatch={SetFormData}
-            value={formData["name"]}
-          />
-          <Input
-            placeholder="last name"
-            dispatch={SetFormData}
-            value={formData["last name"]}
-          />
-          <Input
             placeholder="username"
             dispatch={SetFormData}
             value={formData["username"]}
+          />
+          <Input
+            placeholder="address"
+            dispatch={SetFormData}
+            value={formData["address"]}
+          />
+
+          <Input
+            placeholder="phoneNumber"
+            dispatch={SetFormData}
+            value={formData["phoneNumber"]}
           />
           <Input
             placeholder="email"
@@ -33,11 +34,13 @@ function SignUp() {
             placeholder="password"
             dispatch={SetFormData}
             value={formData["password"]}
+            type="password"
           />
           <Input
             placeholder="confirm password"
             dispatch={SetFormData}
             value={formData["confirm password"]}
+            type="password"
           />
           <ErrorMessage message={Error["password"]}></ErrorMessage>
           <ErrorMessage message={Error["incompleteForm"]}></ErrorMessage>
@@ -50,6 +53,9 @@ function SignUp() {
             data in accordance with the <b>PRIVACY POLICY</b>
           </CheckBox>
 
+          <LoginLink>
+            <Link to="/signin">Already have an account! Login</Link>
+          </LoginLink>
           <Button>CREATE</Button>
         </Form>
       </Wrapper>

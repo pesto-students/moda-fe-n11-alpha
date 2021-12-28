@@ -1,10 +1,15 @@
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { AddUserInStore } from "../../redux/slices/UserSlice";
+import { useNavigate } from "react-router-dom";
 function useSignUpHook() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, SetFormData] = useState({
-    name: "",
-    "last name": "",
     username: "",
+    address: "",
+    phoneNumber: "",
     email: "",
     password: "",
     "confirm password": "",
@@ -15,9 +20,9 @@ function useSignUpHook() {
 
   const ValidateForm = () => {
     if (
-      formData["name"] === "" ||
-      formData["last name"] === "" ||
       formData["username"] === "" ||
+      formData["address"] === "" ||
+      formData["phoneNumber"] === "" ||
       formData["email"] === "" ||
       formData["password"] === "" ||
       formData["confirm password"] === "" ||
@@ -42,13 +47,20 @@ function useSignUpHook() {
       });
     }
   };
-  const HandleFormData = (e) => {
-    setError({});
-    e.preventDefault();
-    console.log(formData);
-    ValidateForm();
-    if (Object.keys(Error).length === 0) {
-      console.log(Object.keys(Error).length);
+  const HandleFormData = async (e) => {
+    console.log("***formData", formData);
+    try {
+      setError({});
+      e.preventDefault();
+      ValidateForm();
+      if (Object.keys(Error).length === 0) {
+        await dispatch(AddUserInStore(formData));
+        toast.success("signup successfull");
+        navigate("/");
+      }
+    } catch (e) {
+      console.log("error caught", e);
+      toast.error("Duplicate user.Please try logging in");
     }
   };
 

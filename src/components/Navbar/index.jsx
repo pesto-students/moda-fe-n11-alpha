@@ -1,6 +1,6 @@
-import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { GrCart } from "react-icons/gr";
+
 import {
   Container,
   Wrapper,
@@ -11,33 +11,76 @@ import {
   Logo,
   Right,
   MenuItem,
+  CartContainer,
 } from "./styles";
 
+import { Link } from "react-router-dom";
+import useNavbarFunctionality from "./useNavbarFunctionalityHook";
 const Navbar = () => {
+  const [
+    text,
+    handleTextClick,
+    email,
+    textSearch,
+    Logout,
+    debounceSearch = () => {},
+  ] = useNavbarFunctionality();
   return (
     <Container>
       <Wrapper>
         <Left>
-          <SearchContainer>
-            <Input />
-            <BsSearch></BsSearch>
-          </SearchContainer>
+          <Logo>
+            <Link to="/">MODA.</Link>
+          </Logo>
         </Left>
         <Center>
-          <Logo>MODA.</Logo>
+          <SearchContainer>
+            <Input
+              value={text}
+              onChange={debounceSearch}
+              placeholder="Search"
+            />
+            <BsSearch size={20} onClick={handleTextClick}></BsSearch>
+          </SearchContainer>
         </Center>
         <Right>
-          <MenuItem>SignIn</MenuItem>
-          <MenuItem>Register</MenuItem>
+          {!email ? (
+            <>
+              <MenuItem>
+                <Link to="/signin">SignIn</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/signup">Register</Link>
+              </MenuItem>
+            </>
+          ) : (
+            <MenuItem>
+              <div
+                onClick={() => {
+                  Logout();
+                }}
+              >
+                Logout
+              </div>
+            </MenuItem>
+          )}
           <MenuItem>
-            <GrCart />
+            <Link to="/cart">
+              <CartContainer>
+                <GrCart />
+              </CartContainer>
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>
 
       <SearchContainer mobileView>
-        <Input />
-        <BsSearch></BsSearch>
+        <Input
+          value={textSearch}
+          onChange={debounceSearch}
+          placeholder="Search"
+        />
+        <BsSearch size={20} onClick={handleTextClick}></BsSearch>
       </SearchContainer>
     </Container>
   );

@@ -1,6 +1,5 @@
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
 import Button from "../Button";
-import { data } from "../../Data";
 import {
   Container,
   Arrow,
@@ -12,14 +11,23 @@ import {
   Desc,
 } from "./styles";
 import useCarousal from "./useCarousalHook";
+import React, { useEffect } from "react";
+
 const Carousal = () => {
-  const [slideIndex, handleClick] = useCarousal();
+  const [data, handleBtnClick, slideIndex, handleClick] = useCarousal();
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleClick("right");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [slideIndex, handleClick]);
+
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
         <VscTriangleLeft size={28} />
       </Arrow>
-      {data.map((item, index, arr) => (
+      {data?.map((item, index) => (
         <Wrapper key={index} slideIndex={slideIndex}>
           <Slide>
             <ImgContainer>
@@ -28,7 +36,9 @@ const Carousal = () => {
             <InfoContainer>
               <h1>{item.title}</h1>
               <Desc>{item.desc}</Desc>
-              <Button variant="light">SHOP NOW</Button>
+              <Button onClick={handleBtnClick} variant="light">
+                SHOP NOW
+              </Button>
             </InfoContainer>
           </Slide>
         </Wrapper>
