@@ -20,7 +20,7 @@ function App() {
       dispatch(LogUserInStore());
       dispatch(getCartForUser());
     })();
-  }, []);
+  }, [dispatch]);
   return (
     <ThemeProvider theme={theme}>
       <div>
