@@ -1,6 +1,6 @@
 import { Container, Wrapper, Form, LoginLink } from "./styles";
 import { Input, CheckBox, ErrorMessage, Button } from "../../components";
-import useSignUpHook from "./useSignUpHook";
+import useSignUpHook from "./useSignupHook";
 import { Link } from "react-router-dom";
 function SignUp() {
   const { formData, SetFormData, HandleFormData, Error, ValidateForm } =
