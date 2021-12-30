@@ -3,7 +3,8 @@ import { Input, CheckBox, ErrorMessage, Button } from "../../components";
 import useSignUpHook from "./useSignUpHook";
 import { Link } from "react-router-dom";
 function SignUp() {
-  const { formData, SetFormData, HandleFormData, Error } = useSignUpHook();
+  const { formData, SetFormData, HandleFormData, Error, ValidateForm } =
+    useSignUpHook();
   return (
     <Container>
       <Wrapper>
@@ -25,11 +26,15 @@ function SignUp() {
             dispatch={SetFormData}
             value={formData["phoneNumber"]}
           />
+          <ErrorMessage message={Error && Error["phoneNumber"]}></ErrorMessage>
+
           <Input
             placeholder="email"
             dispatch={SetFormData}
             value={formData["email"]}
           />
+          <br />
+          <ErrorMessage message={Error && Error["email"]}></ErrorMessage>
           <Input
             placeholder="password"
             dispatch={SetFormData}
@@ -42,8 +47,11 @@ function SignUp() {
             value={formData["confirm password"]}
             type="password"
           />
-          <ErrorMessage message={Error["password"]}></ErrorMessage>
-          <ErrorMessage message={Error["incompleteForm"]}></ErrorMessage>
+          <ErrorMessage message={Error && Error["password"]}></ErrorMessage>
+          <br />
+          <ErrorMessage
+            message={Error && Error["incompleteForm"]}
+          ></ErrorMessage>
           <CheckBox
             name="agreement"
             dispatch={SetFormData}
@@ -54,7 +62,7 @@ function SignUp() {
           </CheckBox>
 
           <LoginLink>
-            <Link to="/signin">Already have an account! Login</Link>
+            <Link to="/signin">Already have an account! Login </Link>
           </LoginLink>
           <Button>CREATE</Button>
         </Form>

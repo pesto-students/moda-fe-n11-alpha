@@ -79,9 +79,10 @@ const {
   clearCart,
 } = slice.actions;
 
-export const getCartForUser = (email) => async (dispatch) => {
+export const getCartForUser = () => async (dispatch) => {
   try {
-    const cart = await get(uri, email);
+    console.log("cart hit");
+    const cart = await get(uri);
     dispatch(GetProduct(cart));
   } catch (e) {
     throw e;

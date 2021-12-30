@@ -1,20 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Input, ErrorMessage, Button } from "../../components";
-import { Container, Wrapper, Link as StyledLink, Form } from "./styles";
+import { Container, Wrapper, Form } from "./styles";
 import useSignInHook from "./useSignInHook";
-import { useNavigate, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
+import withNavbarHOC from "../../hoc/withNavbarHOC";
 function SignIn() {
   const { formData, SetFormData, HandleFormData, Error } = useSignInHook();
-  const navigate = useNavigate();
-  const email = useSelector((state) => state?.user?.email);
-
-  useEffect(() => {
-    if (email) {
-      navigate("/");
-    }
-  }, []);
 
   return (
     <Container>
@@ -39,16 +30,12 @@ function SignIn() {
           />
           <ErrorMessage message={Error["incompleteForm"]}></ErrorMessage>
           <Button>LOGIN</Button>
-          <StyledLink>
-            <Link to="/forgotPassword">DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          </StyledLink>
-          <StyledLink>
-            <Link to="/signup">CREATE A NEW ACCOUNT</Link>
-          </StyledLink>
+          <Link to="/forgotPassword">DO NOT YOU REMEMBER THE PASSWORD?</Link>
+          <Link to="/signup">CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>
   );
 }
 
-export default SignIn;
+export default withNavbarHOC(SignIn);

@@ -32,6 +32,7 @@ export const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  display: block;
 `;
 
 export const LoginLink = styled.div`

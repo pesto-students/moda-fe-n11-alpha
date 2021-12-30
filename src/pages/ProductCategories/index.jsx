@@ -1,4 +1,6 @@
 import { Product, FilterCheckbox } from "../../components";
+import withNavbarFooterHOC from "../../hoc/withNavbarFooterHOC";
+
 import {
   Title,
   FilterContainer,
@@ -71,4 +73,4 @@ function ProductCategories() {
   );
 }
 
-export default ProductCategories;
+export default withNavbarFooterHOC(ProductCategories);

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, post } from "../../api/UserApi";
-
-const uri = "/user";
+import { toast } from "react-toastify";
+import { login, post, logout } from "../../api/UserApi";
 
 const slice = createSlice({
   name: "user",
@@ -33,21 +32,18 @@ const { AddUser, LogoutUser } = slice.actions;
 
 export const AddUserInStore = (data) => async (dispatch) => {
   try {
-    const res = await post(uri, data);
+    const res = await post(data);
     dispatch(AddUser(data));
   } catch (e) {
-    console.log("error logged", e.message);
-    throw e;
+    console.log(e.msg, e);
+    toast.error("Duplicate User.User with this mail already exists.");
   }
 };
 export const LogUserInStore =
   (data = {}) =>
   async (dispatch) => {
     try {
-      console.log("log user is called");
       const res = await login(`/user/login`, data);
-      console.log(res);
-      localStorage.setItem("jwt", res.token);
       localStorage.setItem("email", res.email);
       dispatch(AddUser(res));
     } catch (e) {
@@ -56,6 +52,7 @@ export const LogUserInStore =
   };
 export const LogOutUserInStore = (data) => async (dispatch) => {
   try {
+    const res = await logout("/logout", data);
     localStorage.clear();
     dispatch(LogoutUser());
   } catch (e) {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 
-export const Container = styled.div`
+export const Container = styled.main`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
@@ -16,7 +16,7 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   width: 25%;
   padding: 20px;
   background-color: white;
@@ -26,11 +26,10 @@ export const Wrapper = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-`;
-
-export const Link = styled.a`
-  margin: 5px 0px;
-  font-size: 12px;
-  text-decoration: underline;
-  cursor: pointer;
+  a {
+    margin: 5px 0px;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;

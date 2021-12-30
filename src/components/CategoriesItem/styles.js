@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { mobile } from "../../responsive";
 export const SubHeader = styled.div`
   display: flex;
   position: absolute;
@@ -8,10 +8,12 @@ export const SubHeader = styled.div`
 export const Container = styled.div`
   position: relative;
   height: 50vh;
-  width: 100%;
+  width: 33%;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  ${mobile({ width: "100%" })};
   ${SubHeader} {
     display: none;
   }

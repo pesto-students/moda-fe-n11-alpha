@@ -1,13 +1,22 @@
 import { Container, SubHeader, Image, Title } from "./styles";
 import { Button } from "../../components";
+import useCategoryItemHook from "./useCategoryItemHook";
 
 const CategoryItem = ({ img, title }) => {
+  const [handleTextClick] = useCategoryItemHook();
   return (
     <Container>
-      <Image src={img} />
+      <Image src={img} alt={title} />
       <SubHeader>
         <Title>{title}</Title>
-        <Button variant="grey">SHOP NOW</Button>
+        <Button
+          onClick={(e) => {
+            handleTextClick(title);
+          }}
+          variant="grey"
+        >
+          SHOP NOW
+        </Button>
       </SubHeader>
     </Container>
   );

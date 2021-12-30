@@ -2,6 +2,8 @@ import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RiDeleteBinLine } from "react-icons/ri";
 import CartSummary from "./CartSummary";
+import withNavbarFooterHOC from "../../hoc/withNavbarFooterHOC";
+
 import {
   Bottom,
   Container,
@@ -134,4 +136,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default withNavbarFooterHOC(Cart);

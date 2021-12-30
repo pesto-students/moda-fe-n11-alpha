@@ -1,20 +1,19 @@
 import { BsSearch } from "react-icons/bs";
 import { GrCart } from "react-icons/gr";
-
-import {
-  Container,
-  Wrapper,
-  Left,
-  SearchContainer,
-  Input,
-  Center,
-  Logo,
-  Right,
-  MenuItem,
-  CartContainer,
-} from "./styles";
-
 import { Link } from "react-router-dom";
+import {
+  CartContainer,
+  Center,
+  Container,
+  Input,
+  Left,
+  Logo,
+  MenuItem,
+  Right,
+  SearchContainer,
+  Wrapper,
+  CartCount,
+} from "./styles";
 import useNavbarFunctionality from "./useNavbarFunctionalityHook";
 const Navbar = () => {
   const [
@@ -24,7 +23,9 @@ const Navbar = () => {
     textSearch,
     Logout,
     debounceSearch = () => {},
+    cartCount,
   ] = useNavbarFunctionality();
+
   return (
     <Container>
       <Wrapper>
@@ -34,7 +35,7 @@ const Navbar = () => {
           </Logo>
         </Left>
         <Center>
-          <SearchContainer>
+          <SearchContainer role="search">
             <Input
               aria-label="globalSearch"
               aria-required="true"
@@ -45,7 +46,7 @@ const Navbar = () => {
             <BsSearch size={20} onClick={handleTextClick}></BsSearch>
           </SearchContainer>
         </Center>
-        <Right>
+        <Right role="composite">
           {!email ? (
             <>
               <MenuItem>
@@ -74,6 +75,7 @@ const Navbar = () => {
           <MenuItem>
             <Link to="/cart">
               <CartContainer>
+                <CartCount>{cartCount}</CartCount>
                 <GrCart />
               </CartContainer>
             </Link>
@@ -81,7 +83,7 @@ const Navbar = () => {
         </Right>
       </Wrapper>
 
-      <SearchContainer mobileView>
+      <SearchContainer role="search" mobileView>
         <Input
           aria-label="mobileViewglobalSearch"
           aria-required="true"

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -5,6 +6,7 @@ import {
   IncProductInCart,
   DecProductInCart,
 } from "../../redux/slices/CartSlice";
+import { getCartForUser } from "../../redux/slices/CartSlice";
 function useCartFunctionalityHook() {
   const cart = useSelector((state) => state.cart);
   const email = useSelector((state) => state.user.email);
@@ -13,6 +15,10 @@ function useCartFunctionalityHook() {
   const navigateToProductcategories = () => {
     navigate("/ProductCategories");
   };
+  useEffect(() => {
+    console.log("useeffects from cart is called");
+    dispatch(getCartForUser());
+  }, []);
 
   const calculateSubTotal = () => {
     let total = 0;

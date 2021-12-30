@@ -12,9 +12,9 @@ const slice = createSlice({
 });
 export default slice.reducer;
 const { GetOrders } = slice.actions;
-export const getOrdersForUser = (email) => async (dispatch) => {
+export const getOrdersForUser = () => async (dispatch) => {
   try {
-    const cart = await get(email);
+    const cart = await get();
     dispatch(GetOrders(cart));
   } catch (e) {
     throw e;

@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { AddUserInStore } from "../../redux/slices/UserSlice";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import validator from "validator";
+
 function useSignUpHook() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const email = useSelector((state) => state?.user?.email);
   const [formData, SetFormData] = useState({
     username: "",
     address: "",
@@ -16,8 +20,20 @@ function useSignUpHook() {
     agreement: false,
   });
 
-  const [Error, setError] = useState({});
+  const [Error, setError] = useState();
 
+  useEffect(() => {
+    const mail = localStorage.getItem("email");
+    if (email || mail) {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (Error && Object.keys(Error).length > 0) {
+      dispatch(AddUserInStore(formData));
+    }
+  }, [Error]);
   const ValidateForm = () => {
     if (
       formData["username"] === "" ||
@@ -28,7 +44,7 @@ function useSignUpHook() {
       formData["confirm password"] === "" ||
       formData["agreement"] === false
     ) {
-      console.log(formData);
+      console.log("all field are empty");
       setError((state) => {
         return {
           ...state,
@@ -37,8 +53,25 @@ function useSignUpHook() {
         };
       });
     }
+    if (!validator.isEmail(formData["email"])) {
+      console.log(formData["email"]);
+      setError((state) => {
+        return {
+          ...state,
+          email: "Not a valid email.",
+        };
+      });
+    }
+    if (!validator.isMobilePhone(formData["phoneNumber"])) {
+      console.log(formData["phoneNumber"]);
+      setError((state) => {
+        return {
+          ...state,
+          phoneNumber: "Not a valid phoneNumber.",
+        };
+      });
+    }
     if (formData["password"] !== formData["confirm password"]) {
-      console.log(formData["password"], formData["confirm password"]);
       setError((state) => {
         return {
           ...state,
@@ -46,20 +79,18 @@ function useSignUpHook() {
         };
       });
     }
+    setError((state) => {
+      return {
+        ...state,
+        validation: "Complete",
+      };
+    });
   };
   const HandleFormData = async (e) => {
-    console.log("***formData", formData);
     try {
-      setError({});
       e.preventDefault();
       ValidateForm();
-      if (Object.keys(Error).length === 0) {
-        await dispatch(AddUserInStore(formData));
-        toast.success("signup successfull");
-        navigate("/");
-      }
     } catch (e) {
-      console.log("error caught", e);
       toast.error("Duplicate user.Please try logging in");
     }
   };
@@ -69,6 +100,7 @@ function useSignUpHook() {
     SetFormData,
     HandleFormData,
     Error,
+    ValidateForm,
   };
 }
 

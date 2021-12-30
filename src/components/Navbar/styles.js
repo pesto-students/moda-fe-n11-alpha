@@ -12,16 +12,13 @@ export const Wrapper = styled.nav`
   align-items: center;
 `;
 /* Adding components to the left side */
-export const Left = styled.div`
+export const Left = styled.section`
   flex: 1;
   display: flex;
   align-items: center;
   ${mobile({ justifyContent: "space-evenly" })}
 `;
-export const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-`;
+
 export const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   height: 28px;
@@ -70,4 +67,20 @@ export const MenuItem = styled.div`
 `;
 export const CartContainer = styled.div`
   position: relative;
+`;
+export const CartCount = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  z-index: 2;
+  font-size: 11px;
+  border-radius: 50%;
+  background: #d60b28;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  display: block;
+  text-align: center;
+  color: white;
+  font-weight: bold;
 `;

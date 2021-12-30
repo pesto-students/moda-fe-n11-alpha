@@ -38,7 +38,17 @@ function useProductFunctionalityHook(img, id, name, color, size) {
   function handleClick() {
     navigate(`/ProductDescription/${id}`);
   }
-  return [handleClick, handleAddToCart];
+
+  const navigateToPayment = (product, amount = 2) => {
+    product.quantity = 1;
+    const cart = [product];
+    if (email) navigate("/payment", { state: { email, cart, amount } });
+    else {
+      toast.success("Please sign up or login before adding items to cart");
+      navigate("/signup");
+    }
+  };
+  return [handleClick, handleAddToCart, navigateToPayment];
 }
 
 export default useProductFunctionalityHook;

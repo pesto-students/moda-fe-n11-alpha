@@ -10,6 +10,7 @@ export const Container = styled.figure`
   background-color: ${(props) => props.theme.color.modaLightYellow};
   position: relative;
   border-radius: 20px;
+  margin-top: 2rem;
   box-shadow: 0 7px 30px -10px rgb(10 10 10 / 89%);
   ${mobile({ width: "100%" })}
 `;

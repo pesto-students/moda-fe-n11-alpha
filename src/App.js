@@ -11,15 +11,14 @@ import { getCartForUser } from "./redux/slices/CartSlice";
 
 function App() {
   const dispatch = useDispatch();
+  axios.defaults.baseURL = "http://localhost:2000/api/v1";
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     (function () {
-      axios.defaults.baseURL = "http://localhost:2000/api/v1";
-      axios.defaults.headers.common["Authorization"] =
-        localStorage.getItem("jwt");
-      axios.defaults.withCredentials = true;
       dispatch(getHomePageData());
       dispatch(LogUserInStore());
-      dispatch(getCartForUser(localStorage.getItem("email")));
+      dispatch(getCartForUser());
     })();
   }, []);
   return (

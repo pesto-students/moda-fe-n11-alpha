@@ -7,6 +7,7 @@ export const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  box-shadow: 0 7px 30px -10px rgb(10 10 10 / 89%);
 `;
 
 export const Title = styled.h1`
@@ -14,9 +15,12 @@ export const Title = styled.h1`
   font-weight: bolder;
 `;
 
-export const Desc = styled.div``;
+export const Desc = styled.div`
+  text-align: center;
+  font-size: 18px;
+`;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.form`
   width: 40vw;
   height: 7vh;
   border: 1px solid lightgrey;
@@ -27,9 +31,9 @@ export const InputContainer = styled.div`
   padding-left: 2px;
 `;
 export const Input = styled.input`
-  border: 0;
-  flex: 8;
-  padding: 5px;
+  border: none;
+  width: 100%;
+  height: 100%;
 `;
 export const Button = styled.button`
   border: 0;

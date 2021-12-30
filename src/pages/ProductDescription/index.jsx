@@ -1,4 +1,6 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import withNavbarFooterHOC from "../../hoc/withNavbarFooterHOC";
+
 import {
   Amount,
   AmountContainer,
@@ -98,4 +100,4 @@ const ProductDescription = () => {
   );
 };
 
-export default ProductDescription;
+export default withNavbarFooterHOC(ProductDescription);

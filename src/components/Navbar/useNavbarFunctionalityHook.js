@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
@@ -16,9 +16,25 @@ function useNavbarFunctionality() {
     size,
     gender,
   } = useSelector((state) => state.filter);
+  const cart = useSelector((state) => state.cart);
+
   const { email } = useSelector((state) => state.user);
   const [text, setText] = useState("");
+  const [cartCount, setcartCount] = useState(0);
+
   let Location = useLocation();
+
+  useEffect(() => {
+    if (textSearch !== text) {
+      setText(textSearch);
+    }
+  }, [textSearch]);
+  useEffect(() => {
+    const cartCount = cart.reduce((total, item) => {
+      return total + item?.quantity;
+    }, 0);
+    setcartCount(cartCount);
+  }, [cartCount, cart]);
 
   const Logout = () => {
     dispatch(LogOutUserInStore());
@@ -33,7 +49,6 @@ function useNavbarFunctionality() {
     }
   };
   const getValue = (val) => {
-    console.log("the debounce method is called", val);
     dispatch(UpdateFilterAndUpdateProducts({ text: val, color, size, gender }));
   };
   const debounceDropDown = useCallback(
@@ -45,7 +60,15 @@ function useNavbarFunctionality() {
     debounceDropDown(e.target.value);
   };
 
-  return [text, handleTextClick, email, textSearch, Logout, debounceSearch];
+  return [
+    text,
+    handleTextClick,
+    email,
+    textSearch,
+    Logout,
+    debounceSearch,
+    cartCount,
+  ];
 }
 
 export default useNavbarFunctionality;
