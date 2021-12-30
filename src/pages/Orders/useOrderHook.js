@@ -8,7 +8,7 @@ function useOrderHook() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getOrdersForUser(email));
-  }, []);
+  }, [dispatch, email]);
   return [orders];
 }
 

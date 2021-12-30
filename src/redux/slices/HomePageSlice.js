@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { get, getPopularProducts } from "../../api/HomeApi";
-import { toast } from "react-toastify";
 
 const slice = createSlice({
   name: "home",

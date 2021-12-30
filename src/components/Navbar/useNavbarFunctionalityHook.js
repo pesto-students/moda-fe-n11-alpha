@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
 import { LogOutUserInStore } from "../../redux/slices/UserSlice";
@@ -22,13 +22,11 @@ function useNavbarFunctionality() {
   const [text, setText] = useState("");
   const [cartCount, setcartCount] = useState(0);
 
-  let Location = useLocation();
-
   useEffect(() => {
     if (textSearch !== text) {
       setText(textSearch);
     }
-  }, [textSearch]);
+  }, [textSearch, text]);
   useEffect(() => {
     const cartCount = cart.reduce((total, item) => {
       return total + item?.quantity;
@@ -51,6 +49,7 @@ function useNavbarFunctionality() {
   const getValue = (val) => {
     dispatch(UpdateFilterAndUpdateProducts({ text: val, color, size, gender }));
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceDropDown = useCallback(
     debounce((val) => getValue(val), 3000),
     []

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { get, post, Delete } from "../../api/CartApi";
 import { toast } from "react-toastify";
+import { Delete, get, post } from "../../api/CartApi";
 
 const uri = "/cart";
 
@@ -10,6 +10,7 @@ const slice = createSlice({
   initialState: [],
   reducers: {
     GetProduct: (state, action) => {
+      console.log(state);
       return action.payload;
     },
     Addproduct: (state, action) => {
@@ -17,6 +18,7 @@ const slice = createSlice({
       return state;
     },
     Deleteproduct: (state, action) => {
+      // eslint-disable-next-line array-callback-return
       let newState = state.filter((product) => {
         if (product.id === action.payload.id) {
           if (product.color === action.payload.color) {

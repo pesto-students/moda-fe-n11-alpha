@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
-import { LogUserInStore } from "../../redux/slices/UserSlice";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCartForUser } from "../../redux/slices/CartSlice";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { getCartForUser } from "../../redux/slices/CartSlice";
+import { LogUserInStore } from "../../redux/slices/UserSlice";
 
 function useSignInHook() {
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ function useSignInHook() {
     e.preventDefault();
     setError({});
     ValidateForm();
-    
+
     if (Object.keys(Error).length === 0) {
       try {
         await dispatch(LogUserInStore(formData));
@@ -50,7 +49,7 @@ function useSignInHook() {
     if (email || mail) {
       navigate("/");
     }
-  }, []);
+  }, [email, navigate]);
 
   return {
     formData,

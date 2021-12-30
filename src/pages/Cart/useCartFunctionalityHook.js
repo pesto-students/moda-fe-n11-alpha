@@ -16,9 +16,8 @@ function useCartFunctionalityHook() {
     navigate("/ProductCategories");
   };
   useEffect(() => {
-    console.log("useeffects from cart is called");
     dispatch(getCartForUser());
-  }, []);
+  }, [dispatch]);
 
   const calculateSubTotal = () => {
     let total = 0;

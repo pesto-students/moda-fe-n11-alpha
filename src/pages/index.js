@@ -1,9 +1,8 @@
 import React from "react";
-import ErrorBoundary from "../components/ErrorBoundary";
+import { FaSpinner } from "react-icons/fa";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Payment } from "../components";
-import { Navbar, Announcements, Footer, Newsletter } from "../components";
-import { FaSpinner } from "react-icons/fa";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 function Pages() {
   const LazyCart = React.lazy(() => import("./Cart"));

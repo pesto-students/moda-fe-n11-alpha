@@ -32,7 +32,7 @@ const { AddUser, LogoutUser } = slice.actions;
 
 export const AddUserInStore = (data) => async (dispatch) => {
   try {
-    const res = await post(data);
+    await post(data);
     dispatch(AddUser(data));
   } catch (e) {
     console.log(e.msg, e);
@@ -52,7 +52,7 @@ export const LogUserInStore =
   };
 export const LogOutUserInStore = (data) => async (dispatch) => {
   try {
-    const res = await logout("/logout", data);
+    await logout("/logout", data);
     localStorage.clear();
     dispatch(LogoutUser());
   } catch (e) {

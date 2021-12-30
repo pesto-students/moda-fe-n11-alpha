@@ -15,7 +15,7 @@ function EnterNewPassword() {
     if (email) {
       navigate("/");
     }
-  }, []);
+  }, [email, navigate]);
 
   return (
     <Container>

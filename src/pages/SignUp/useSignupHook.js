@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-import { AddUserInStore } from "../../redux/slices/UserSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import validator from "validator";
+import { AddUserInStore } from "../../redux/slices/UserSlice";
 
 function useSignUpHook() {
   const navigate = useNavigate();
@@ -27,13 +26,13 @@ function useSignUpHook() {
     if (email || mail) {
       navigate("/");
     }
-  }, []);
+  }, [email, navigate]);
 
   useEffect(() => {
     if (Error && Object.keys(Error).length > 0) {
       dispatch(AddUserInStore(formData));
     }
-  }, [Error]);
+  }, [Error, dispatch, formData]);
   const ValidateForm = () => {
     if (
       formData["username"] === "" ||

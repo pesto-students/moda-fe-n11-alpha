@@ -1,10 +1,9 @@
-import { Container, Wrapper, Form, LoginLink } from "./styles";
-import { Input, CheckBox, ErrorMessage, Button } from "../../components";
-import useSignUpHook from "./useSignupHook";
 import { Link } from "react-router-dom";
+import { Button, CheckBox, ErrorMessage, Input } from "../../components";
+import { Container, Form, LoginLink, Wrapper } from "./styles";
+import useSignUpHook from "./useSignUpHook";
 function SignUp() {
-  const { formData, SetFormData, HandleFormData, Error, ValidateForm } =
-    useSignUpHook();
+  const { formData, SetFormData, HandleFormData, Error } = useSignUpHook();
   return (
     <Container>
       <Wrapper>

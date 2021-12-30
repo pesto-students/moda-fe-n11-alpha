@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
 import Product from "../Product";
 import { Container1, Container2 } from "./styles";
-import { Link } from "react-router-dom";
 import usePopulatProductHook from "./usePopulatProductHook";
 const Products = () => {
   const [row1, row2, navigateToPayment] = usePopulatProductHook();
