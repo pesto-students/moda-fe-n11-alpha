@@ -52,12 +52,11 @@ const Navbar = () => {
           </SearchContainer>
         </Center>
         <Right role="composite">
-          {email && doesHttpOnlyCookieExist("jwt") ? (
+          {doesHttpOnlyCookieExist("jwt") ? (
             <>
               <MenuItem>
                 <div
                   onClick={() => {
-                    console.log("logout is called");
                     Logout();
                   }}
                 >
