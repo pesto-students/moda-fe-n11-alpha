@@ -8,7 +8,7 @@ function useCategoryItemHook() {
 
   const getSearchText = (text) => {
     switch (text) {
-      case "SHIRT STYLE": {
+      case "SHIRT STYLE!": {
         return "SHIRT";
       }
       case "LOUNGEWEAR LOVE": {
@@ -22,6 +22,7 @@ function useCategoryItemHook() {
     }
   };
   const handleTextClick = (text) => {
+    console.log("the search text is as folows****", text);
     const searchText = getSearchText(text);
     console.log("the search text is as folows****", searchText);
     navigate(`/ProductCategories?text=${searchText}`);

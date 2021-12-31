@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 import withNavbarHOC from "../../hoc/withNavbarHOC";
 function SignIn() {
   const { formData, SetFormData, HandleFormData, Error } = useSignInHook();
-
   return (
     <Container>
       <Wrapper>
         <h1>SIGN IN</h1>
         <Form
+          autocomplete="on"
           onSubmit={(e) => {
             e.preventDefault();
             HandleFormData(e);
@@ -21,12 +21,14 @@ function SignIn() {
             placeholder="email"
             dispatch={SetFormData}
             value={formData["email"]}
+            autocomplete
           />
           <Input
             placeholder="password"
             dispatch={SetFormData}
             value={formData["password"]}
             type="password"
+            autocomplete
           />
           <ErrorMessage message={Error["incompleteForm"]}></ErrorMessage>
           <Button>LOGIN</Button>

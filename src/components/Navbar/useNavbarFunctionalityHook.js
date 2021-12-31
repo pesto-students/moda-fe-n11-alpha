@@ -18,7 +18,7 @@ function useNavbarFunctionality() {
   } = useSelector((state) => state.filter);
   const cart = useSelector((state) => state.cart);
 
-  const { email } = useSelector((state) => state.user);
+  const email = localStorage.getItem("email");
   const [text, setText] = useState("");
   const [cartCount, setcartCount] = useState(0);
 
@@ -35,6 +35,7 @@ function useNavbarFunctionality() {
   }, [cartCount, cart]);
 
   const Logout = () => {
+    console.log("logout is called");
     dispatch(LogOutUserInStore());
     dispatch(ClearAllCartItems());
     navigate("/");
@@ -58,7 +59,14 @@ function useNavbarFunctionality() {
     setText(e.target.value);
     debounceDropDown(e.target.value);
   };
+  function doesHttpOnlyCookieExist(cookiename) {
+    var d = new Date();
+    d.setTime(d.getTime() + 1000);
+    var expires = "expires=" + d.toUTCString();
 
+    document.cookie = cookiename + "=new_value;path=/;" + expires;
+    return document.cookie.indexOf(cookiename + "=") === -1;
+  }
   return [
     text,
     handleTextClick,
@@ -67,6 +75,7 @@ function useNavbarFunctionality() {
     Logout,
     debounceSearch,
     cartCount,
+    doesHttpOnlyCookieExist,
   ];
 }
 

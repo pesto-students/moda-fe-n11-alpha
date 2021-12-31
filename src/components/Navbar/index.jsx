@@ -24,8 +24,13 @@ const Navbar = () => {
     Logout,
     debounceSearch = () => {},
     cartCount,
+    doesHttpOnlyCookieExist = () => {},
   ] = useNavbarFunctionality();
 
+  console.log(
+    "****the cookie is as follows****",
+    !email && doesHttpOnlyCookieExist("jwt")
+  );
   return (
     <Container>
       <Wrapper>
@@ -47,20 +52,12 @@ const Navbar = () => {
           </SearchContainer>
         </Center>
         <Right role="composite">
-          {!email ? (
-            <>
-              <MenuItem>
-                <Link to="/signin">SignIn</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/signup">Register</Link>
-              </MenuItem>
-            </>
-          ) : (
+          {email && doesHttpOnlyCookieExist("jwt") ? (
             <>
               <MenuItem>
                 <div
                   onClick={() => {
+                    console.log("logout is called");
                     Logout();
                   }}
                 >
@@ -69,6 +66,15 @@ const Navbar = () => {
               </MenuItem>
               <MenuItem>
                 <Link to="/order">Orders</Link>
+              </MenuItem>
+            </>
+          ) : (
+            <>
+              <MenuItem>
+                <Link to="/signin">SignIn</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/signup">Register</Link>
               </MenuItem>
             </>
           )}

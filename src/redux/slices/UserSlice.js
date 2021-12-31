@@ -52,7 +52,9 @@ export const LogUserInStore =
   };
 export const LogOutUserInStore = (data) => async (dispatch) => {
   try {
+    console.log("the logout user is called");
     await logout("/logout", data);
+    localStorage.removeItem("email");
     localStorage.clear();
     dispatch(LogoutUser());
   } catch (e) {
