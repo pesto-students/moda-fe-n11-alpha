@@ -52,7 +52,7 @@ const Navbar = () => {
           </SearchContainer>
         </Center>
         <Right role="composite">
-          {doesHttpOnlyCookieExist("jwt") ? (
+          {doesHttpOnlyCookieExist("jwt") || email ? (
             <>
               <MenuItem>
                 <div
