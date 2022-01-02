@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import validator from "validator";
 import { AddUserInStore } from "../../redux/slices/UserSlice";
 
 function useSignUpHook() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, SetFormData] = useState({
     username: "",
