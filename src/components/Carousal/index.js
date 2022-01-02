@@ -8,6 +8,7 @@ import {
   ImgContainer,
   Image,
   InfoContainer,
+  InfoTitle,
   Desc,
 } from "./styles";
 import useCarousal from "./useCarousalHook";
@@ -18,13 +19,17 @@ const Carousal = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       handleClick("right");
-    }, 3000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, [slideIndex, handleClick]);
 
   return (
-    <Container>
-      <Arrow direction="left" onClick={() => handleClick("left")}>
+    <Container role="banner">
+      <Arrow
+        role="navigation"
+        direction="left"
+        onClick={() => handleClick("left")}
+      >
         <VscTriangleLeft size={28} />
       </Arrow>
       {data?.map((item, index) => (
@@ -34,7 +39,7 @@ const Carousal = () => {
               <Image alt="slider" src={item.img} />
             </ImgContainer>
             <InfoContainer>
-              <h1>{item.title}</h1>
+              <InfoTitle>{item.title}</InfoTitle>
               <Desc>{item.desc}</Desc>
               <Button onClick={handleBtnClick} variant="light">
                 SHOP NOW
@@ -43,7 +48,11 @@ const Carousal = () => {
           </Slide>
         </Wrapper>
       ))}
-      <Arrow direction="right" onClick={() => handleClick("right")}>
+      <Arrow
+        role="navigation"
+        direction="right"
+        onClick={() => handleClick("right")}
+      >
         <VscTriangleRight size={28} />
       </Arrow>
     </Container>

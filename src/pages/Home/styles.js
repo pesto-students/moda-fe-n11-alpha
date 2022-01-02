@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const Heading = styled.h1`
+  font-size: 24px;
+  margin-left: 10px;
   ${mobile({ flexDirection: "column" })};
 `;

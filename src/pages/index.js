@@ -1,8 +1,8 @@
 import React from "react";
-import ErrorBoundary from "../components/ErrorBoundary";
+import { FaSpinner } from "react-icons/fa";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Payment } from "../components";
-import { Navbar, Announcements, Footer, Newsletter } from "../components";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 function Pages() {
   const LazyCart = React.lazy(() => import("./Cart"));
@@ -19,10 +19,7 @@ function Pages() {
   return (
     <Router>
       <ErrorBoundary>
-        <React.Suspense fallback="Loading...">
-          <Navbar />
-          <Announcements />
-
+        <React.Suspense fallback={<FaSpinner />}>
           <Routes>
             <Route exact path="/" element={<LazyHome />}></Route>
             <Route exact path="/signin" element={<LazySignIn />}></Route>
@@ -52,8 +49,6 @@ function Pages() {
             ></Route>
             <Route path="/*" render={() => <h1>No page found</h1>}></Route>
           </Routes>
-          <Newsletter />
-          <Footer />
         </React.Suspense>
       </ErrorBoundary>
     </Router>

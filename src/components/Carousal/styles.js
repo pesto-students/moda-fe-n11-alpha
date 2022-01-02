@@ -3,7 +3,7 @@ import { mobile } from "../../responsive";
 
 export const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
   display: flex;
   position: relative;
   overflow-x: hidden;
@@ -27,33 +27,41 @@ export const Arrow = styled.div`
   z-index: 2;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   height: 100%;
   transition: all 1.5s ease;
   transform: translate(${(props) => props.slideIndex * -100 + "vw"});
 `;
-export const Slide = styled.div`
+export const Slide = styled.article`
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
-export const ImgContainer = styled.div`
+export const ImgContainer = styled.section`
+  position: relative;
   flex: 1;
+  width: 80%;
+  height: 100%;
 `;
 export const Image = styled.img`
-  width: 80%;
-  height: 80vh;
+  position: absolute;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 `;
 export const InfoContainer = styled.div`
   flex: 1;
+`;
+export const InfoTitle = styled.h1`
+  ${mobile({ fontSize: "24px" })}
 `;
 export const Title = styled.h1`
   font-size: 70px;
   ${mobile({ fontSize: "30px" })}
 `;
-export const Desc = styled.p`
+export const Desc = styled.article`
   margin: 50px 0px;
   font-size: 18px;
   font-weight: 500;

@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
 import Product from "../Product";
 import { Container1, Container2 } from "./styles";
-import { Link } from "react-router-dom";
+import usePopulatProductHook from "./usePopulatProductHook";
 const Products = () => {
-  const popularProducts = useSelector((state) => state.home.PopularProduct);
-  const row1 = popularProducts?.slice(0, 3);
-  const row2 = popularProducts?.slice(3, 5);
+  const [row1, row2, navigateToPayment] = usePopulatProductHook();
   return (
     <>
       <Container1>
@@ -17,6 +14,7 @@ const Products = () => {
             color={color[0]}
             img={images.split("~")[0]}
             id={_id}
+            navigateToPayment={navigateToPayment}
           />
         ))}
       </Container1>
@@ -29,6 +27,7 @@ const Products = () => {
             color={color[0]}
             img={images.split("~")[0]}
             id={_id}
+            navigateToPayment={navigateToPayment}
           />
         ))}
       </Container2>

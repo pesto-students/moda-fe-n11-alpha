@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { get, post, put, deleteproduct } from "../../api/ProductAPI";
-import { toast } from "react-toastify";
+import { deleteproduct, get, post, put } from "../../api/ProductAPI";
 const uri = "/product";
 // Slice
 const slice = createSlice({
@@ -70,7 +69,7 @@ export const EditproductInStore = (data) => async (dispatch) => {
 };
 export const DeleteproductInStore = (data) => async (dispatch) => {
   try {
-    let r = await deleteproduct(uri, data);
+    await deleteproduct(uri, data);
     return dispatch(Deleteproduct(data));
   } catch (e) {
     return console.error(e.message);

@@ -18,7 +18,7 @@ export const post = async (uri, data) => {
     },
     body: JSON.stringify(data),
   });
-  console.log("res***", res);
+
   res = await res.json();
   return res;
 };
@@ -45,5 +45,5 @@ export const deleteproduct = async (uri, data) => {
     },
     body: d,
   });
-  return;
+  return res;
 };

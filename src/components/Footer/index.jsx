@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {
   FiFacebook,
   FiInstagram,
@@ -13,7 +12,6 @@ import {
   Logo,
   Desc,
   SocialIconContainer,
-  SocialIcon,
   Center,
   Title,
   List,
@@ -28,21 +26,12 @@ const Footer = () => {
       <Left>
         <Logo>MODA.</Logo>
         <Desc>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque
-          maxime beatae ut similique eligendi animi repellat corrupti labore
-          omnis est, nisi obcaecati totam id laudantium. Ad aliquam incidunt
-          impedit praesentium.
+          <i>"A fixed price fashion store."</i>
         </Desc>
         <SocialIconContainer>
-          <SocialIcon color="blue">
-            <FiFacebook />
-          </SocialIcon>
-          <SocialIcon color="lightblue">
-            <FiTwitter />
-          </SocialIcon>
-          <SocialIcon color="pink">
-            <FiInstagram />
-          </SocialIcon>
+          <FiFacebook size={30} />
+          <FiTwitter size={30} />
+          <FiInstagram size={30} />
         </SocialIconContainer>
       </Left>
       <Center>
@@ -50,8 +39,6 @@ const Footer = () => {
         <List>
           <ListItem>Home</ListItem>
           <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>WomanFashion</ListItem>
           <ListItem>Orders</ListItem>
         </List>
       </Center>

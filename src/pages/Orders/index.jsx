@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
-import { getOrdersForUser } from "../../redux/slices/OrderSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { Tag, OrderCard } from "./styles";
+import React from "react";
+import { OrderCard, Tag } from "./styles";
+import withNavbarFooterHOC from "../../hoc/withNavbarFooterHOC";
+import useOrderHook from "./useOrderHook";
+
 function Orders() {
-  const email = useSelector((state) => state.user.email);
-  const orders = useSelector((state) => state.orders);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getOrdersForUser(email));
-  }, []);
+  const [orders] = useOrderHook();
+
   return (
     <>
       <h1>Orders Page</h1>
@@ -19,12 +16,16 @@ function Orders() {
       <section>
         <h2>Placed Orders</h2>
 
-        {orders.map(({ _id, products, amount }) => {
+        {orders?.map(({ _id, products, amount }) => {
           return (
-            <OrderCard>
+            <OrderCard key={_id}>
               <div>OrderId:{_id}</div>
-              {products.map(({ productName, quantity }) => {
-                return <div>{`${productName}   X   ${quantity}`}</div>;
+              {products?.map(({ productName, quantity }) => {
+                return (
+                  <div
+                    key={productName}
+                  >{`${productName}   X   ${quantity}`}</div>
+                );
               })}
               <div>TotalAmount:{`${amount} $`}</div>
             </OrderCard>
@@ -35,4 +36,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default withNavbarFooterHOC(Orders);

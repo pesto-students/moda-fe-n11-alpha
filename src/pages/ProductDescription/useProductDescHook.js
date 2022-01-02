@@ -1,11 +1,9 @@
-import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { AddproductInCart } from "../../redux/slices/CartSlice";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { AddproductInCart } from "../../redux/slices/CartSlice";
 
 function useProductDescHook() {
   const [ProductDetails, setProductDetails] = useState({});
@@ -55,7 +53,7 @@ function useProductDescHook() {
     fetchSingleProduct(id)
       .then((p) => setProductDetails(p))
       .catch((err) => console.log(err.message));
-  }, []);
+  }, [id]);
 
   return [
     ProductDetails,

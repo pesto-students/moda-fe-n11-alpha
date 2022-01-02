@@ -1,9 +1,8 @@
 import axios from "axios";
 
-export const get = async (uri, userId) => {
-  let uri_withParams = `${uri}?userId=${userId}`;
-  const res = await axios.get(uri_withParams);
-  console.log(res);
+export const get = async (uri) => {
+  
+  const res = await axios.get(uri);
   return res.data;
 };
 export const post = async (uri, data) => {

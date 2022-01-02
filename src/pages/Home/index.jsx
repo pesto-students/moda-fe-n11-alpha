@@ -2,17 +2,19 @@ import React from "react";
 import Categories from "../../components/Categories";
 import PopularProductsList from "../../components/PopularProductsList";
 import Carousal from "../../components/Carousal";
+import withNavbarFooterHOC from "../../hoc/withNavbarFooterHOC";
+import { Heading } from "./styles";
 
 const Home = () => {
   return (
     <>
       <Carousal />
-      <h1>Popular Categories</h1>
+      <Heading>Popular Categories</Heading>
       <Categories />
-      <h1>Popular Products</h1>
+      <Heading>Popular Products</Heading>
       <PopularProductsList />
     </>
   );
 };
 
-export default Home;
+export default withNavbarFooterHOC(Home);
