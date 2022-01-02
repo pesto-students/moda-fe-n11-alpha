@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,7 +8,6 @@ import { LogUserInStore } from "../../redux/slices/UserSlice";
 function useSignInHook() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const email = useSelector((state) => state?.user?.email);
   const [formData, SetFormData] = useState({
     email: "",
     password: "",
