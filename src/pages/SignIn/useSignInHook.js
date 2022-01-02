@@ -44,12 +44,6 @@ function useSignInHook() {
       }
     }
   };
-  useEffect(() => {
-    const mail = localStorage.getItem("email");
-    if (email || mail) {
-      navigate("/");
-    }
-  }, [email, navigate]);
 
   return {
     formData,
