@@ -8,13 +8,6 @@ import { useSelector } from "react-redux";
 function SignIn() {
   const { formData, SetFormData, HandleFormData, Error } = useSignInHook();
   const navigate = useNavigate();
-  const email = useSelector((state) => state?.user?.email);
-
-  useEffect(() => {
-    if (email) {
-      navigate("/");
-    }
-  }, []);
 
   return (
     <Container>
