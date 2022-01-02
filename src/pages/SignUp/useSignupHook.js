@@ -8,7 +8,6 @@ import { AddUserInStore } from "../../redux/slices/UserSlice";
 function useSignUpHook() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const email = useSelector((state) => state?.user?.email);
   const [formData, SetFormData] = useState({
     username: "",
     address: "",
@@ -20,14 +19,6 @@ function useSignUpHook() {
   });
 
   const [Error, setError] = useState();
-
-  useEffect(() => {
-    const mail = localStorage.getItem("email");
-    if (email || mail) {
-      navigate("/");
-    }
-  }, [email, navigate]);
-
   useEffect(() => {
     if (Error && Object.keys(Error).length > 0) {
       dispatch(AddUserInStore(formData));
