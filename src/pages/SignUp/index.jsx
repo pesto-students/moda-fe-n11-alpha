@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import { Button, CheckBox, ErrorMessage, Input } from "../../components";
-import { Container, Form, LoginLink, Wrapper } from "./styles";
-import useSignUpHook from "./useSignupHook";
+import { Link } from 'react-router-dom';
+import { Button, CheckBox, ErrorMessage, Input } from '../../components';
+import withNavbarHOC from '../../hoc/withNavbarHOC';
+import { Container, Form, LoginLink, Wrapper } from './styles';
+import useSignUpHook from './useSignupHook';
 function SignUp() {
   const { formData, SetFormData, HandleFormData, Error } = useSignUpHook();
   return (
@@ -10,58 +11,58 @@ function SignUp() {
         <h1>Sign Up</h1>
         <Form onSubmit={HandleFormData}>
           <Input
-            placeholder="username"
+            placeholder='username'
             dispatch={SetFormData}
-            value={formData["username"]}
+            value={formData['username']}
           />
           <Input
-            placeholder="address"
+            placeholder='address'
             dispatch={SetFormData}
-            value={formData["address"]}
+            value={formData['address']}
           />
 
           <Input
-            placeholder="phoneNumber"
+            placeholder='phoneNumber'
             dispatch={SetFormData}
-            value={formData["phoneNumber"]}
+            value={formData['phoneNumber']}
           />
-          <ErrorMessage message={Error && Error["phoneNumber"]}></ErrorMessage>
+          <ErrorMessage message={Error && Error['phoneNumber']}></ErrorMessage>
 
           <Input
-            placeholder="email"
+            placeholder='email'
             dispatch={SetFormData}
-            value={formData["email"]}
+            value={formData['email']}
           />
           <br />
-          <ErrorMessage message={Error && Error["email"]}></ErrorMessage>
+          <ErrorMessage message={Error && Error['email']}></ErrorMessage>
           <Input
-            placeholder="password"
+            placeholder='password'
             dispatch={SetFormData}
-            value={formData["password"]}
-            type="password"
+            value={formData['password']}
+            type='password'
           />
           <Input
-            placeholder="confirm password"
+            placeholder='confirm password'
             dispatch={SetFormData}
-            value={formData["confirm password"]}
-            type="password"
+            value={formData['confirm password']}
+            type='password'
           />
-          <ErrorMessage message={Error && Error["password"]}></ErrorMessage>
+          <ErrorMessage message={Error && Error['password']}></ErrorMessage>
           <br />
           <ErrorMessage
-            message={Error && Error["incompleteForm"]}
+            message={Error && Error['incompleteForm']}
           ></ErrorMessage>
           <CheckBox
-            name="agreement"
+            name='agreement'
             dispatch={SetFormData}
-            data={formData["agreement"]}
+            data={formData['agreement']}
           >
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </CheckBox>
 
           <LoginLink>
-            <Link to="/signin">Already have an account! Login </Link>
+            <Link to='/signin'>Already have an account! Login </Link>
           </LoginLink>
           <Button>CREATE</Button>
         </Form>
@@ -70,4 +71,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default withNavbarHOC(SignUp);
