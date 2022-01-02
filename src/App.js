@@ -13,7 +13,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     (function () {
-      axios.defaults.baseURL = "http://localhost:2000/api/v1";
+      axios.defaults.baseURL = "https://moda-be.herokuapp.com/api/v1";
       axios.defaults.headers.common["Authorization"] =
         localStorage.getItem("jwt");
       axios.defaults.withCredentials = true;
