@@ -11,7 +11,7 @@ import { getCartForUser } from './redux/slices/CartSlice';
 
 function App() {
   const dispatch = useDispatch();
-  axios.defaults.baseURL = 'http://localhost:2000/api/v1';
+  axios.defaults.baseURL = 'https://moda-be.herokuapp.com/api/v1';
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
