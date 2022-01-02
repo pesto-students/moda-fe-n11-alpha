@@ -1,10 +1,10 @@
-import { useState, useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { UpdateFilterAndUpdateProducts } from "../../redux/slices/FilterSlice";
-import { LogOutUserInStore } from "../../redux/slices/UserSlice";
-import { ClearAllCartItems } from "../../redux/slices/CartSlice";
-import { debounce } from "lodash";
+import { useState, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { UpdateFilterAndUpdateProducts } from '../../redux/slices/FilterSlice';
+import { LogOutUserInStore } from '../../redux/slices/UserSlice';
+import { ClearAllCartItems } from '../../redux/slices/CartSlice';
+import { debounce } from 'lodash';
 
 function useNavbarFunctionality() {
   const dispatch = useDispatch();
@@ -18,8 +18,7 @@ function useNavbarFunctionality() {
   } = useSelector((state) => state.filter);
   const cart = useSelector((state) => state.cart);
 
-  const email = localStorage.getItem("email");
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [cartCount, setcartCount] = useState(0);
 
   useEffect(() => {
@@ -35,10 +34,10 @@ function useNavbarFunctionality() {
   }, [cartCount, cart]);
 
   const Logout = () => {
-    console.log("logout is called");
+    console.log('logout is called');
     dispatch(LogOutUserInStore());
     dispatch(ClearAllCartItems());
-    navigate("/");
+    navigate('/');
   };
 
   const handleTextClick = (e) => {
@@ -62,15 +61,15 @@ function useNavbarFunctionality() {
   function doesHttpOnlyCookieExist(cookiename) {
     var d = new Date();
     d.setTime(d.getTime() + 1000);
-    var expires = "expires=" + d.toUTCString();
+    var expires = 'expires=' + d.toUTCString();
 
-    document.cookie = cookiename + "=new_value;path=/;" + expires;
-    return document.cookie.indexOf(cookiename + "=") === -1;
+    document.cookie = cookiename + '=new_value;path=/;' + expires;
+    return document.cookie.indexOf(cookiename + '=') === -1;
   }
   return [
     text,
     handleTextClick,
-    email,
+
     textSearch,
     Logout,
     debounceSearch,

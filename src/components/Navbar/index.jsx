@@ -19,7 +19,7 @@ const Navbar = () => {
   const [
     text,
     handleTextClick,
-    email,
+
     textSearch,
     Logout,
     debounceSearch = () => {},
