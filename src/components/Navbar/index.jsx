@@ -1,6 +1,6 @@
-import { BsSearch } from "react-icons/bs";
-import { GrCart } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { BsSearch } from 'react-icons/bs';
+import { GrCart } from 'react-icons/gr';
+import { Link } from 'react-router-dom';
 import {
   CartContainer,
   Center,
@@ -13,8 +13,8 @@ import {
   SearchContainer,
   Wrapper,
   CartCount,
-} from "./styles";
-import useNavbarFunctionality from "./useNavbarFunctionalityHook";
+} from './styles';
+import useNavbarFunctionality from './useNavbarFunctionalityHook';
 const Navbar = () => {
   const [
     text,
@@ -28,31 +28,31 @@ const Navbar = () => {
   ] = useNavbarFunctionality();
 
   console.log(
-    "****the cookie is as follows****",
-    !email && doesHttpOnlyCookieExist("jwt")
+    '****the cookie is as follows****',
+    doesHttpOnlyCookieExist('jwt')
   );
   return (
     <Container>
       <Wrapper>
         <Left>
           <Logo>
-            <Link to="/">MODA.</Link>
+            <Link to='/'>MODA.</Link>
           </Logo>
         </Left>
         <Center>
-          <SearchContainer role="search">
+          <SearchContainer role='search'>
             <Input
-              aria-label="globalSearch"
-              aria-required="true"
+              aria-label='globalSearch'
+              aria-required='true'
               value={text}
               onChange={debounceSearch}
-              placeholder="Search"
+              placeholder='Search'
             />
             <BsSearch size={20} onClick={handleTextClick}></BsSearch>
           </SearchContainer>
         </Center>
-        <Right role="composite">
-          {doesHttpOnlyCookieExist("jwt") || email ? (
+        <Right role='composite'>
+          {doesHttpOnlyCookieExist('jwt') ? (
             <>
               <MenuItem>
                 <div
@@ -64,21 +64,21 @@ const Navbar = () => {
                 </div>
               </MenuItem>
               <MenuItem>
-                <Link to="/order">Orders</Link>
+                <Link to='/order'>Orders</Link>
               </MenuItem>
             </>
           ) : (
             <>
               <MenuItem>
-                <Link to="/signin">SignIn</Link>
+                <Link to='/signin'>SignIn</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/signup">Register</Link>
+                <Link to='/signup'>Register</Link>
               </MenuItem>
             </>
           )}
           <MenuItem>
-            <Link to="/cart">
+            <Link to='/cart'>
               <CartContainer>
                 <CartCount>{cartCount}</CartCount>
                 <GrCart />
@@ -88,13 +88,13 @@ const Navbar = () => {
         </Right>
       </Wrapper>
 
-      <SearchContainer role="search" mobileView>
+      <SearchContainer role='search' mobileView>
         <Input
-          aria-label="mobileViewglobalSearch"
-          aria-required="true"
+          aria-label='mobileViewglobalSearch'
+          aria-required='true'
           value={textSearch}
           onChange={debounceSearch}
-          placeholder="Search"
+          placeholder='Search'
         />
         <BsSearch size={20} onClick={handleTextClick}></BsSearch>
       </SearchContainer>
