@@ -2,26 +2,16 @@ Project Title: MODA FASHION STORE
 
 Demo link: https://eager-swartz-44c197.netlify.app/
 
-Table of Content:
-About The App
-Screenshots
-Technologies
-Setup
-Approach
-Status
-Credits
-License
-
-About The App
+About The App:-
 MODA FASHION STORE is an app which is a fixed price fashion store with has a variety of products for everyone.
 
-Screenshots
+Screenshots:-
 https://ibb.co/gyQcpL5
 
-Technologies
+Technologies:-
 I used html, css, javascript, react.js, styled-components, node.js, express.js.
 
-Setup
+Setup/
 Backend: git clone https://github.com/pesto-students/moda-be-n11-alpha.git
 run npm install
 run npm start
@@ -30,8 +20,8 @@ FrontEnd:git clone https://github.com/pesto-students/moda-fe-n11-alpha.git
 run npm install
 run npm start
 ...
-Approach
-Node.js best practices
+Approach:-
+Node.js best practices:-
 1. Use HTTP methods and API routes
 
 2. While creating RESTful APIs for basic CRUD operations, you should use the predefined routes PUT, POST, PATCH, DELETE, GET. Also, the name of the routes should use nouns and must be according to the use case. For eg. A route to delete a student from a college app the route must be DELETE /student/:id
@@ -56,10 +46,10 @@ Some other miscellaneous or general coding best practices are:
 7. Application should be divided into folders, modules, components and services based on the scope of services, data sharing and size of the application.
 
 
-Status
+Status:-
 MODA FASHION STORE project is still in progress. Version 1 will be out soon.
 
-License
+License:-
 MIT license @ UditSaurabh
 
 
