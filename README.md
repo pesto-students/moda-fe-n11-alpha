@@ -1,6 +1,70 @@
-# Getting Started with Create React App
+Project Title: MODA FASHION STORE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Demo link: https://eager-swartz-44c197.netlify.app/
+
+Table of Content:
+About The App
+Screenshots
+Technologies
+Setup
+Approach
+Status
+Credits
+License
+
+About The App
+MODA FASHION STORE is an app which is a fixed price fashion store with has a variety of products for everyone.
+
+Screenshots
+https://ibb.co/gyQcpL5
+
+Technologies
+I used html, css, javascript, react.js, styled-components, node.js, express.js.
+
+Setup
+Backend: git clone https://github.com/pesto-students/moda-be-n11-alpha.git
+run npm install
+run npm start
+
+FrontEnd:git clone https://github.com/pesto-students/moda-fe-n11-alpha.git
+run npm install
+run npm start
+...
+Approach
+Node.js best practices
+1. Use HTTP methods and API routes
+
+2. While creating RESTful APIs for basic CRUD operations, you should use the predefined routes PUT, POST, PATCH, DELETE, GET. Also, the name of the routes should use nouns and must be according to the use case. For eg. A route to delete a student from a college app the route must be DELETE /student/:id
+
+3. Use Stateless Authentications: Your REST APIs and your authentication component should be both stateless. Stateless authentication could be achieved with the help of JWT (JSON Web Token)
+
+4. Properly use status codes: While error handling is an important part of any function, HTTP services must also follow the same. To indicate the status of a request, proper status codes should be used.
+
+Some other miscellaneous or general coding best practices are:
+1. Following a good style-guide
+
+2. Keeping the code functional and simple.
+
+3. Create index files for each folder or module and use them to keep track of the contents. This also boosts the application’s performance.
+
+4. Embrace the feature of reusability in modern development languages. Be as less repetitive as possible.
+
+5. Avoid using timeout functions for request resolve and redirection. Instead, use observables and behavior subjects.
+
+6. Divide the project into modules and identify the scope of services
+
+7. Application should be divided into folders, modules, components and services based on the scope of services, data sharing and size of the application.
+
+
+Status
+MODA FASHION STORE project is still in progress. Version 1 will be out soon.
+
+License
+MIT license @ UditSaurabh
+
+
+
+ADDITIONAL INFORMATION
 
 ## Available Scripts
 
