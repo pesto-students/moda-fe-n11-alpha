@@ -17,7 +17,7 @@ function useNavbarFunctionality() {
     gender,
   } = useSelector((state) => state.filter);
   const cart = useSelector((state) => state.cart);
-
+  const { email = '' } = useSelector((state) => state.user);
   const [text, setText] = useState('');
   const [cartCount, setcartCount] = useState(0);
 
@@ -69,12 +69,12 @@ function useNavbarFunctionality() {
   return [
     text,
     handleTextClick,
-
     textSearch,
     Logout,
     debounceSearch,
     cartCount,
     doesHttpOnlyCookieExist,
+    email,
   ];
 }
 

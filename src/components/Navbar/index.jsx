@@ -19,15 +19,17 @@ const Navbar = () => {
   const [
     text,
     handleTextClick,
-
     textSearch,
     Logout,
     debounceSearch = () => {},
     cartCount,
     doesHttpOnlyCookieExist = () => {},
+    email,
   ] = useNavbarFunctionality();
 
   console.log(
+    'cookies are as follows',
+    document.cookie.indexOf('jwt'),
     '****the cookie is as follows****',
     doesHttpOnlyCookieExist('jwt')
   );
@@ -52,7 +54,7 @@ const Navbar = () => {
           </SearchContainer>
         </Center>
         <Right role='composite'>
-          {doesHttpOnlyCookieExist('jwt') ? (
+          {email ? (
             <>
               <MenuItem>
                 <div
