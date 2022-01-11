@@ -1,8 +1,8 @@
-import React from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { RiDeleteBinLine } from "react-icons/ri";
-import CartSummary from "./CartSummary";
-import withNavbarFooterHOC from "../../hoc/withNavbarFooterHOC";
+import React from 'react';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import CartSummary from './CartSummary';
+import withNavbarFooterHOC from '../../hoc/withNavbarFooterHOC';
 
 import {
   Bottom,
@@ -27,8 +27,9 @@ import {
   TopText,
   TopTexts,
   Wrapper,
-} from "./styles";
-import useCartFunctionalityHook from "./useCartFunctionalityHook";
+  EmptyBagTitle,
+} from './styles';
+import useCartFunctionalityHook from './useCartFunctionalityHook';
 const Cart = () => {
   const [
     cart,
@@ -58,7 +59,7 @@ const Cart = () => {
               <TopText>Shopping Bag({cart.length})</TopText>
             </TopTexts>
             <TopButton
-              type="filled"
+              type='filled'
               onClick={() => {
                 navigateToPayment(cart, calculateTotal(0, 0));
               }}
@@ -89,7 +90,7 @@ const Cart = () => {
                       </ProductDetail>
                       <PriceDetail>
                         <RiDeleteBinLine
-                          id="deleteIcon"
+                          id='deleteIcon'
                           size={30}
                           onClick={() => {
                             deleteProductinCart(email, id, color, size);
@@ -130,7 +131,7 @@ const Cart = () => {
           </Bottom>
         </Wrapper>
       ) : (
-        <Title>Your Bag is Empty</Title>
+        <EmptyBagTitle>Your Bag is Empty</EmptyBagTitle>
       )}
     </Container>
   );

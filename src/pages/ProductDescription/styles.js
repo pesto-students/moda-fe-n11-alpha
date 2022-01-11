@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { mobile } from "../../responsive";
+import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Wrapper = styled.main`
   display: flex;
   gap: 2rem;
-  ${mobile({ flexDirection: "column" })}
+  ${mobile({ flexDirection: 'column' })}
 `;
 export const InfoContainer = styled.article`
   flex: 2.5;
@@ -51,7 +51,7 @@ export const BtnContainer = styled.div`
 export const Button = styled.button`
   padding: 1.5rem;
   font-weight: 400;
-  border: 1px solid teal;
+  border: 1px solid blue;
   background-color: white;
   margin-right: 20px;
   margin-top: 25px;
@@ -69,11 +69,11 @@ export const Button = styled.button`
 export const FilterTitle = styled.h2``;
 
 export const FilterCover = styled.div`
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
   border-radius: 20%;
   border: ${(props) =>
-    props.selected === props.data ? "1px solid teal" : "1px solid lightgrey"};
+    props.selected === props.data ? '2px solid blue' : '1px solid lightgrey'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,8 +109,13 @@ export const Quantity = styled.div`
 `;
 
 export const Amount = styled.div`
-  border: 1px solid teal;
-  border-radius: 25%;
-  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+  border-radius: 20%;
+  width: 36px;
+  height: 24px;
   text-align: center;
+  font-size: 18px;
 `;

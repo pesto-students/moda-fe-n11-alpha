@@ -1,13 +1,19 @@
-import styled from "styled-components";
-import { mobile } from "../../responsive";
+import styled from 'styled-components';
+import { mobile } from '../../responsive';
 export const Container = styled.div``;
 export const Wrapper = styled.div`
   padding: 20px;
-  ${mobile({ padding: "0px" })}
+  ${mobile({ padding: '0px' })}
 `;
 export const Title = styled.h1`
   font-weight: 300;
   text-align: center;
+`;
+export const EmptyBagTitle = styled.h1`
+  font-weight: 300;
+  text-align: center;
+  margin-top: 20vh;
+  margin-bottom: 60vh;
 `;
 export const Top = styled.div`
   display: flex;
@@ -19,13 +25,13 @@ export const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
+  border: ${(props) => props.type === 'filled' && 'none'};
   background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+    props.type === 'filled' ? 'black' : 'transparent'};
+  color: ${(props) => props.type === 'filled' && 'white'};
 `;
 export const TopTexts = styled.div`
-  ${mobile({ display: "flex" })}
+  ${mobile({ display: 'flex' })}
 `;
 export const TopText = styled.span`
   text-decoration: underline;
@@ -35,7 +41,7 @@ export const TopText = styled.span`
 export const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+  ${mobile({ flexDirection: 'column' })}
 `;
 export const Info = styled.div`
   flex: 3;
@@ -62,7 +68,7 @@ export const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  ${mobile({ marginLeft: "5px" })}
+  ${mobile({ marginLeft: '5px' })}
 `;
 export const ProductName = styled.span``;
 export const ProductId = styled.span``;

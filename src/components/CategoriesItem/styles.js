@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { mobile } from "../../responsive";
+import styled from 'styled-components';
+import { mobile } from '../../responsive';
 export const SubHeader = styled.div`
   display: flex;
   position: absolute;
@@ -13,7 +13,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${mobile({ width: "100%" })};
+  ${mobile({ width: '100%' })};
   ${SubHeader} {
     display: none;
   }
@@ -26,7 +26,7 @@ export const Container = styled.div`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   overflow: hidden;
 `;
 export const Button = styled.button`
