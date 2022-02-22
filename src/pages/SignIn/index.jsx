@@ -1,9 +1,9 @@
-import React from "react";
-import { Input, ErrorMessage, Button } from "../../components";
-import { Container, Wrapper, Form } from "./styles";
-import useSignInHook from "./useSignInHook";
-import { Link } from "react-router-dom";
-import withNavbarHOC from "../../hoc/withNavbarHOC";
+import React from 'react';
+import { Input, ErrorMessage, Button } from '../../components';
+import { Container, Wrapper, Form, LoginButtonGroup } from './styles';
+import useSignInHook from './useSignInHook';
+import { Link } from 'react-router-dom';
+import withNavbarHOC from '../../hoc/withNavbarHOC';
 function SignIn() {
   const { formData, SetFormData, HandleFormData, Error } = useSignInHook();
   return (
@@ -11,29 +11,32 @@ function SignIn() {
       <Wrapper>
         <h1>SIGN IN</h1>
         <Form
-          autocomplete="on"
+          autocomplete='on'
           onSubmit={(e) => {
             e.preventDefault();
             HandleFormData(e);
           }}
         >
           <Input
-            placeholder="email"
+            placeholder='email'
             dispatch={SetFormData}
-            value={formData["email"]}
+            value={formData['email']}
             autocomplete
           />
           <Input
-            placeholder="password"
+            placeholder='password'
             dispatch={SetFormData}
-            value={formData["password"]}
-            type="password"
+            value={formData['password']}
+            type='password'
             autocomplete
           />
-          <ErrorMessage message={Error["incompleteForm"]}></ErrorMessage>
-          <Button>LOGIN</Button>
-          <Link to="/forgotPassword">DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link to="/signup">CREATE A NEW ACCOUNT</Link>
+          <ErrorMessage message={Error['incompleteForm']}></ErrorMessage>
+          <LoginButtonGroup>
+            <Button name='Login'>LOGIN</Button>
+            <Button name='guest_Login'>Guest Login</Button>
+          </LoginButtonGroup>
+          <Link to='/forgotPassword'>DO NOT YOU REMEMBER THE PASSWORD?</Link>
+          <Link to='/signup'>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

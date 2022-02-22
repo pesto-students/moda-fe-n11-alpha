@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { mobile } from "../../responsive";
+import styled from 'styled-components';
+import { mobile } from '../../responsive';
 
 export const Container = styled.main`
   width: 100vw;
@@ -8,7 +8,7 @@ export const Container = styled.main`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url('https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
       center;
   background-size: cover;
   display: flex;
@@ -20,7 +20,7 @@ export const Wrapper = styled.section`
   width: 25%;
   padding: 20px;
   background-color: white;
-  ${mobile({ width: "80%" })}
+  ${mobile({ width: '80%' })}
 `;
 
 export const Form = styled.form`
@@ -32,4 +32,8 @@ export const Form = styled.form`
     text-decoration: underline;
     cursor: pointer;
   }
+`;
+export const LoginButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
